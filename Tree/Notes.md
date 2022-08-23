@@ -4,8 +4,7 @@
 - Post-Order (L-R-D)
 
 ## Complete Binary Tree
-
-![[Pasted image 20220823073155.png]]
+![[binary_tree.png]]
 ### Create Node
 ```java
 class Node{  
