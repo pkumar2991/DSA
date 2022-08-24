@@ -177,4 +177,30 @@ void postOrderUsingStack(Node node) {
 
 `Output:` 4 5 2 6 7 3 1
 
+### Level Order Traversal
 
+Traversing tree using queue
+
+*Time Complexity- O(n)*
+*Space Complexity- O(n)*
+
+```java
+void levelTraversal(Node root) {  
+    Queue<Node> queue = new ArrayDeque<>();  
+    queue.add(root);  
+    if (root == null) {  
+        return;  
+    }  
+    while (!queue.isEmpty()) {  
+        root = queue.remove();  
+        System.out.print(root + " ");  
+        if (root.left != null) {  
+            queue.add(root.left);  
+        }  
+        if (root.right != null) {  
+            queue.add(root.right);  
+        }  
+    }  
+}
+```
+`Output:` 1 2 3 4 5 6 7
