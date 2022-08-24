@@ -22,8 +22,8 @@ int findMax(Node root) {
     return max;  
 }
 ```
-`output:` 7
-`Time Complexity:` O(n)
+`output:` 7\
+`Time Complexity:` O(n)\
 `Space Complexity:` O(n)
 
 2. Find maximum of a binary tree without using recursion
@@ -47,6 +47,30 @@ int findMaxWithoutRecursion(Node root) {
 }
 ```
 
-`output:` 7
-`Time Complexity:` O(n)
+`output:` 7\
+`Time Complexity:` O(n)\
 `Space Complexity:` O(n)
+
+3. Search an element in tree (return 1 if found otherwise return 0)
+
+```java
+int searchElt(Node root, int data) {
+    int temp = 0;
+    if (root == null) {
+        return 0;
+    } else {
+        if (root.data == data) {
+            return 1;
+        }
+        temp = searchElt(root.left, data);
+        if (temp == 1)
+            return 1;
+        return searchElt(root.right, data);
+    }
+
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
