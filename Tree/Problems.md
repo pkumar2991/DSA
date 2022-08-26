@@ -74,3 +74,139 @@ int searchElt(Node root, int data) {
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
 
+4. Search an element in tree using queue
+```java
+int searchEltQueue(Node root, int data) {  
+    Deque<Node> deque = new LinkedList<>();  
+    deque.add(root);  
+    while (!deque.isEmpty()) {  
+        root = deque.poll();  
+        if (root.data == data) {  
+            return 1;  
+        }  
+        if (root.left != null) {  
+            deque.add(root.left);  
+        }  
+        if (root.right != null) {  
+            deque.add(root.right);  
+        }  
+    }  
+    return 0;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+5. Insert a node into the binary tree
+```java
+void insetUsingQueue(Node root, int data) {  
+    Deque<Node> deque = new LinkedList<>();  
+    if (root == null) {  
+        root = new Node(data);  
+    }  
+    deque.add(root);  
+    while (!deque.isEmpty()) {  
+        root = deque.poll();  
+        if (root.left == null) {  
+            root.left = new Node(data);  
+            return;  
+        } else {  
+            deque.add(root.left);  
+        }  
+        if (root.right == null) {  
+            root.right = new Node(data);  
+            return;  
+        } else {  
+            deque.add(root.right);  
+        }  
+    }  
+  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+6. Find the total number of nodes in the binary tree
+```java
+int sizeOfBinaryTree(Node root) {  
+    if (root == null) return 0;  
+    return sizeOfBinaryTree(root.left) + sizeOfBinaryTree(root.right) + 1;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+7. Find the total number of nodes in the binary tree without recursion
+
+```java
+int sizeOfBinaryTreeWithoutRecursion(Node root) {  
+    if (root == null) return 0;  
+    Deque<Node> deque = new LinkedList<>();  
+    deque.add(root);  
+    int count = 0;  
+    while (!deque.isEmpty()) {  
+        root = deque.poll();  
+        count++;  
+        if (root.left != null) {  
+            deque.add(root.left);  
+        }  
+        if (root.right != null) {  
+            deque.add(root.right);  
+        }  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+8.  Print the level order traversal in reverse way
+```java
+void reverseLevelNodePrint(Node root) {  
+    if (root == null) return;  
+    Deque<Node> deque = new LinkedList<>();  
+    Deque<Node> stack = new ArrayDeque<>();  
+    deque.add(root);  
+    while (!deque.isEmpty()) {  
+        root = deque.poll();  
+        if (root.right != null) {  
+            deque.add(root.right);  
+        }  
+        if (root.left != null) {  
+            deque.add(root.left);  
+        }  
+        stack.push(root);  
+    }  
+    while (!stack.isEmpty()) {  
+        System.out.print(stack.pop() + " ");  
+    }  
+}
+```
+
+`Output:` 4 5 6 7 2 3 1\
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+9. Delete a tree
+
+```java
+Node deleteTree(Node root) {  
+    if (root == null) return null;  
+    deleteTree(root.left);  
+    deleteTree(root.right);  
+    root.left = null;  
+    root.right = null;  
+    root = null;  
+    return root;  
+  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
