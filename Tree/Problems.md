@@ -359,8 +359,8 @@ void deleteDeepestNode(Node root, Node deepestNode) {
 ```
 5. Replace the data of deepest node with the data of the node that need to be deleted and then delete the deepest node
 
-`Instead of deleting the node we could replace the data with the deepest node and remove the deepest node. This approach will not disturb the hierarchy of the existing tree after deleting the deepest node.
-`
+*Instead of deleting the node we could replace the data with the deepest node and delete the deepest node. This approach will not disturb the hierarchy of the existing tree after deleting the deepest node.*
+
 ```java
 void deleteNode(Node root, int data) {  
 	Node nodeTobeDeleted = findNode(root, data);  
