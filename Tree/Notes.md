@@ -4,7 +4,7 @@
 - Post-Order (L-R-D)
 
 ## Complete Binary Tree
-![alt tree_image] (https://github.com/pkumar2991/DSA/blob/main/binary_tree.png "Binary Tree Image")
+![[binary_tree.png]]
 ### Create Node
 ```java
 class Node{  
