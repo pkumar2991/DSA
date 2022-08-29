@@ -377,3 +377,108 @@ void deleteNode(Node root, int data) {
 
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
+
+14. Find number of leaf nodes in a binary tree
+	*Nodes without any child is termed as Leaf Node.*
+
+```java
+int leafNodesCount(Node root) {  
+    int count = 0;  
+    if (root != null) {  
+        Queue<Node> queue = new LinkedList<>();  
+        queue.add(root);  
+        while (!queue.isEmpty()) {  
+            root = queue.poll();  
+            if (root.left == null && root.right == null) {  
+                count++;  
+            } else {  
+                if (root.left != null) {  
+                    queue.add(root.left);  
+                }  
+                if (root.right != null) {  
+                    queue.add(root.right);  
+                }  
+            }  
+        }  
+  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+15. Find the count of full nodes in a binary tree.
+	*Node having both left and right child is termed as full node.*
+```java
+int fullNodeCount(Node root) {  
+    int count = 0;  
+    if (root != null) {  
+        Queue<Node> queue = new LinkedList<>();  
+        queue.add(root);  
+        while (!queue.isEmpty()) {  
+            root = queue.poll();  
+            if (root.left != null && root.right != null) {  
+                count++;  
+            }  
+            if (root.left != null) {  
+                queue.add(root.left);  
+            }  
+            if (root.right != null) {  
+                queue.add(root.right);  
+            }  
+        }  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+16. Find the count of half nodes in a binary tree.
+	*Node having either left child or right child (but not both) is termed as half node*
+```java
+int halfNodeCount(Node root) {  
+    int count = 0;  
+    if (root != null) {  
+        Queue<Node> queue = new LinkedList<>();  
+        queue.add(root);  
+        while (!queue.isEmpty()) {  
+            root = queue.poll();  
+            if ((root.left == null && root.right != null) || (root.left != null && root.right == null)) {  
+                count++;  
+            }  
+            if (root.left != null) {  
+                queue.add(root.left);  
+            }  
+            if (root.right != null) {  
+                queue.add(root.right);  
+            }  
+        }  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+17. Compare two trees if they are identical
+
+```java
+boolean identicalTree(Node root1, Node root2){  
+    if(root1 == null && root2 == null){  
+        return  true;  
+    }  
+    if(root1 == null || root2 == null){  
+        return false;  
+    }  
+    return (root1.data == root2.data) && identicalTree(root1.left,root2.left) && identicalTree(root1.right,root2.right);  
+}
+```
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+
