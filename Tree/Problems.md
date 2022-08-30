@@ -478,7 +478,73 @@ boolean identicalTree(Node root1, Node root2){
     return (root1.data == root2.data) && identicalTree(root1.left,root2.left) && identicalTree(root1.right,root2.right);  
 }
 ```
+
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
 
+18. Find the diameter of a binary tree
+**Pending**
+19. Find the level that has maximum sum in the binary tree.
+```java
+int findLevelWithMaxiSum(Node root) {  
+    int currentSum = 0, maxSum = 0;  
+    int level = 0;  
+    int maxLevel = 0;  
+    if (root == null) return 0;  
+    Queue<Node> queue = new LinkedList<>();  
+    queue.add(root);  
+    queue.add(null);  
+    while (!queue.isEmpty()) {  
+        root = queue.poll();  
+        if (root != null) {  
+            currentSum = currentSum + root.data;  
+            if (root.left != null) {  
+                queue.add(root.left);  
+            }  
+            if (root.right != null) {  
+                queue.add(root.right);  
+            }  
+        } else {  
+            if (currentSum > maxSum) {  
+                maxSum = currentSum;  
+                maxLevel = level;  
+            }  
+            level++;  
+            currentSum = 0;  
+            if (!queue.isEmpty())  
+                queue.add(null);  
+        }  
+  
+    }  
+    return maxLevel;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+20. Print all the nodes of root-to-leaf paths
+
+```java
+void printRootToLeafPath(Node root, ArrayList<Integer> list) {  
+    if (root == null) return;  
+    list.add(root.data);  
+    if (root.left == null && root.right == null) {  
+        printPath(list);  
+    } else {  
+        printRootToLeafPath(root.left, list);  
+        list.remove(list.size() - 1);  
+        printRootToLeafPath(root.right, list);  
+        list.remove(list.size() - 1);  
+    }  
+  
+}  
+void printPath(ArrayList<Integer> list) {  
+    Stream.of(list).forEach(System.out::print);  
+    System.out.println();  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
 
