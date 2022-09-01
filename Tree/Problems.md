@@ -483,7 +483,74 @@ boolean identicalTree(Node root1, Node root2){
 `Space Complexity:` O(n)
 
 18. Find the diameter of a binary tree
-**Pending**
+**Diameter: Total number of nodes from deepest node of the left to the deepest node to the right of the tree.**
+*There are three cases while evaluating the diameter of binary tree:*
+- start of the diameter lies on left and end lies on right side of the tree
+- start and end both lies on left side of the tree
+- start and end both lies on right side of the tree
+
+If we consider only first case, the solution would be the below one:
+```java
+int diameter(Node root){  
+    if(root == null) return 0;  
+    int lh = heightOfTree(root.left);  
+    int rh = heightOfTree(root.right);  
+	 // No of nodes = no of edges + 1; 
+	 // No of edges = 2 (if two child) or 1 (if only one child)  
+    return lh + rh + 3;
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+But considering all case, the solution would be the below one:
+
+```java
+int diameter(Node root){  
+    if(root == null) return  0;  
+    int left = diameterOn2(root.left);  
+    int right = diameterOn2(root.right);  
+    int htmax = heightOfTree(root.left) + heightOfTree(root.right) + 3;//7  
+    int max = Math.max(htmax,Math.max(left,right));  
+    return max;  
+}
+```
+
+`Time Complexity:` O(n^2)\
+`Space Complexity:` O(n)
+
+It could be improvised by calculating height in the same recursion
+
+```java
+class DiaPair {  
+    int diameter;  
+    int height;  
+  
+    @Override  
+    public String toString() {  
+        return "DiaPair{" +  
+                "diameter=" + diameter +  
+                '}';  
+    }
+}
+
+DiaPair findDiameter(Node root, DiaPair diaPair) {  
+    if (root == null) {  
+        DiaPair dia = new DiaPair();  
+        dia.height = -1;  
+        dia.diameter = 0;  
+        return dia;  
+    }  
+    DiaPair leftDiaPair = findDiameter(root.left, diaPair);  
+    DiaPair rightDiaPair = findDiameter(root.right, diaPair);  
+    DiaPair dp = new DiaPair();  
+    dp.height = Math.max(leftDiaPair.height, rightDiaPair.height) + 1;  
+    int fes = leftDiaPair.height + rightDiaPair.height + 3;  
+    dp.diameter = Math.max(fes, Math.max(leftDiaPair.diameter, rightDiaPair.diameter));  
+    return dp;  
+}
+```
 19. Find the level that has maximum sum in the binary tree.
 ```java
 int findLevelWithMaxiSum(Node root) {  
@@ -547,4 +614,103 @@ void printPath(ArrayList<Integer> list) {
 
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
+
+21. Check existence of path with given sum.
+
+```java
+boolean hasPathWithSum(Node root, int sum) {  
+    if (root == null) return false;  
+    boolean ans = false;  
+    int subSum = sum - root.data;  
+    if (root.left == null && root.right == null) {  
+        if (subSum != 0) return false;  
+        return true;  
+    }  
+    if (root.left != null) {  
+        ans = hasPathWithSum(root.left, subSum);  
+    }  
+    if (!ans && root.right != null) {  
+        ans = hasPathWithSum(root.right, subSum);  
+    }  
+    return ans;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+22. Find sum of all elements in a binary tree
+
+```java
+int sum(Node root){  
+    if(root == null) return 0;  
+    return root.data + sum(root.left)+sum(root.right);  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+23. Find sum of all elements in a binary tree without recursion
+
+```java
+int sumWithoutRecursion(Node root) {  
+    if (root == null) return 0;  
+    Queue<Node> queue = new LinkedList<>();  
+    queue.add(root);  
+    int sum = 0;  
+    while (!queue.isEmpty()) {  
+        root = queue.poll();  
+        sum = sum + root.data;  
+  
+        if (root.left != null) {  
+            queue.add(root.left);  
+        }  
+        if (root.right != null) {  
+            queue.add(root.right);  
+        }  
+    }  
+    return sum;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+24. Replace the tree with its mirror tree
+
+```java
+Node mirrorBinaryTree(Node root) {  
+    if (root == null) return null;  
+    mirrorBinaryTree(root.left);  
+    mirrorBinaryTree(root.right);  
+    Node temp = root.right;  
+    root.right = root.left;  
+    root.left = temp;  
+    return root;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+25. Check if two trees are mirror of each other.
+
+```java
+boolean areMirrorTrees(Node root1, Node root2) {  
+    if (root1 == null && root2 == null) return true;  
+    if (root1 == null || root2 == null) return false;  
+    if (root1.data != root2.data)  
+        return false;  
+    else {  
+        return areMirrorTrees(root1.left, root2.right) && areMirrorTrees(root1.right, root2.left);  
+    }  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+26. Find least common ancestor(LCA) for two nodes in a tree
+**Pending**
 
