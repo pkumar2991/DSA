@@ -712,5 +712,75 @@ boolean areMirrorTrees(Node root1, Node root2) {
 `Space Complexity:` O(n)
 
 26. Find least common ancestor(LCA) for two nodes in a tree
-**Pending**
+*The Lowest Common Ancestor (LCA) of two nodes ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com") and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com") in a rooted tree is the lowest (deepest) node that is an ancestor of both ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com") and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com").*
 
+```java
+Node findLCA(Node root, int node1, int node2) {  
+    if (root == null) return root;  
+    if (root.data == node1 || root.data == node2) {  
+        return root;  
+    }  
+    Node left = findLCA(root.left, node1, node2);  
+    Node right = findLCA(root.right, node1, node2);  
+  
+    if (left != null && right != null) {  
+        return root;  
+    } else {  
+        return left != null ? left : right;  
+    }  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+27. Create tree with inorder and preorder traversal output of a tree
+
+```java
+Node buildBinaryTree(int[] inorder, int[] preorder, int inOrderStart, int inOrderEnd) {  
+    if (inorder.length == 0 || preorder.length == 0) {  
+        return null;  
+    }  
+    if (inOrderStart > inOrderEnd) return null;  
+    int data = preorder[preOrderIndex];  
+    Node node = new Node(data);  
+    preOrderIndex++;  // Should be static variable
+    if (inOrderStart == inOrderEnd) return node;  
+    int inOrderIndex = -1;  
+    for (int i = 0; i <= inOrderEnd; i++) {  
+        if (inorder[i] == data) {  
+            inOrderIndex = i;  
+            break;  
+        }  
+    }  
+    node.left = buildBinaryTree(inorder, preorder, inOrderStart, inOrderIndex - 1);  
+    node.right = buildBinaryTree(inorder, preorder, inOrderIndex + 1, inOrderEnd);  
+    return node;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)\
+
+28. If we are given two traversal sequences, can we construct the binary tree uniquely?
+
+*Tree can be constructed only if one of the traversal method is* **inorder**.
+
+29. Print all ancestors of a node in the given tree
+
+```java
+boolean printAllAncestors(Node root, int data) {  
+    if (root == null) return false;  
+    if (root.data == data || printAllAncestors(root.left, data) || printAllAncestors(root.right, data)) {  
+        System.out.print(root.data + " ");  
+        return true;  
+    }  
+    return false;  
+}
+```
+
+`Input:` 7\
+`Output:` 1 3 7\
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
