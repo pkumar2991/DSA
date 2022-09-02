@@ -1,5 +1,5 @@
 # Problems on Binary Tree
-Refer the [[Notes]] page for the binary tree
+![binary_tree.png](https://github.com/pkumar2991/DSA/blob/main/binary_tree.png)
 1. Find maximum of a binary tree
 
 ```java
@@ -760,7 +760,7 @@ Node buildBinaryTree(int[] inorder, int[] preorder, int inOrderStart, int inOrde
 ```
 
 `Time Complexity:` O(n)\
-`Space Complexity:` O(n)\
+`Space Complexity:` O(n)
 
 28. If we are given two traversal sequences, can we construct the binary tree uniquely?
 
@@ -780,7 +780,7 @@ boolean printAllAncestors(Node root, int data) {
 ```
 
 `Input:` 7\
-`Output:` 1 3 7\
+`Output:` 1 3 7
 
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
