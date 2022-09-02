@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Tree/Problems.md",
+            "file": "BitManipulation/Problems.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tree/Problems.md",
+                "file": "BitManipulation/Problems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tree/Problems.md",
+                "file": "BitManipulation/Problems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tree/Problems.md"
+                "file": "BitManipulation/Problems.md"
               }
             }
           }
@@ -130,10 +130,11 @@
   },
   "active": "76bf8c3625e6e396",
   "lastOpenFiles": [
-    "Tree/Notes.md",
+    "BitManipulation/Notes.md",
     "Tree/Problems.md",
-    "Pasted image 20220823073155.png.md",
     "binary_tree.png",
+    "Tree/Notes.md",
+    "Pasted image 20220823073155.png.md",
     "Pasted image 20220823073155.png",
     "Readme.md"
   ]
