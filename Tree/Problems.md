@@ -1,5 +1,7 @@
 # Problems on Binary Tree
 ![binary_tree.png](https://github.com/pkumar2991/DSA/blob/main/binary_tree.png)
+
+## Binary Tree
 1. Find maximum of a binary tree
 
 ```java
@@ -784,3 +786,210 @@ boolean printAllAncestors(Node root, int data) {
 
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
+
+30. Print the elements of tree in zigzag pattern
+
+```java
+void zigzagTraversal(Node root) {  
+    if (root == null) return;  
+    Deque<Node> currentLevelStack = new ArrayDeque<>();  
+    Deque<Node> nextLevelStack = new ArrayDeque<>();  
+    int leftToRight = 1;  
+    Node temp = null;  
+    currentLevelStack.push(root);  
+  
+    while (!currentLevelStack.isEmpty()) {  
+        temp = currentLevelStack.pop();  
+        if (temp != null) {  
+            System.out.print(temp.data + " ");  
+            if (leftToRight == 1) {  
+                if (temp.left != null) nextLevelStack.push(temp.left);  
+                if (temp.right != null) nextLevelStack.push(temp.right);  
+            } else {  
+                if (temp.right != null) nextLevelStack.push(temp.right);  
+                if (temp.left != null) nextLevelStack.push(temp.left);  
+            }  
+        }  
+        if (currentLevelStack.isEmpty()) {  
+            leftToRight = 1 - leftToRight;  
+            Deque<Node> tempStack = currentLevelStack;  
+            currentLevelStack = nextLevelStack;  
+            nextLevelStack = tempStack;  
+        }  
+    }  
+}
+```
+
+`Output:` 1 3 2 4 5 6 7 8
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+31. Print vertical sum of a binary tree.
+
+```java
+void verticalSumInBinaryTree(Node root, int column, Map<Integer, Integer> map) {  
+    if (root == null) return;  
+    if (map.containsKey(column)) {  
+        map.put(column, (map.get(column) + root.data));  
+    } else {  
+        map.put(column, root.data);  
+    }  
+    verticalSumInBinaryTree(root.left, column - 1, map);  
+    verticalSumInBinaryTree(root.right, column + 1, map);  
+}
+```
+
+Sort the map by key and then print the values of each map entry.
+
+`Output:` 4 2 12 3 7
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+32. How many different binary trees are possible with n nodes?
+
+*No of possible trees = (2^n) - n*
+
+33. Create binary tree from preorder assuming that a node has either 0 or 2 node and leaf node is represented by L.
+
+```java
+CharNode buildTreeWithPreOrder(char[] preorder, int index) {  
+    if (preorder.length == 0) return null;  
+    CharNode node = new CharNode(preorder[index]); // created with root  
+    if (preorder[index] == 'L') {  
+        return node;  
+    }  
+    node.left = buildTreeWithPreOrder(preorder, index + 1);  
+    index++;  
+    node.right = buildTreeWithPreOrder(preorder, index + 1);  
+    return node;  
+}
+```
+
+`Input:` [I,L,I,L,L]\
+`Output:` I L I L L -*preorder traversal of the tree built*
+
+`Time Complexity:` O(n)
+
+34. Fill the next pointer of each node in the tree/ Populate next pointer of each node
+
+![[populateNextPointer.png]]
+*`Condition:`* 
+-  By default, next Pointer would be null for each node
+-  If the right child of the node is null, next pointer would be null
+
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+
+```java
+class Node {  
+    int data;  
+    Node left;  
+    Node right;  
+    Node next;  
+  
+    public Node(int data) {  
+        this.data = data;  
+    }
+}
+
+void fillNext(Node root) {  
+    if (root == null) {  
+        return;  
+    }  
+    Queue<Node> queue = new LinkedList<>();  
+    queue.add(root);  
+    queue.add(null);  
+    Node temp = null;  
+    while (!queue.isEmpty()) {  
+        temp = queue.poll();  
+        if (temp == null) {  
+            if (!queue.isEmpty()) {  
+                queue.add(null);  
+            }  
+        } else {  
+            temp.next = queue.peek();  
+            if (temp.left != null) queue.add(temp.left);  
+            if (temp.right != null) queue.add(temp.right);  
+        }  
+    }  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+35. Solve the above problem using recursion.
+
+```java
+void fillNextRecursion(Node root) {  
+    if (root == null) return;  
+    if (root.left != null) {  
+        root.left.next = root.right;  
+    }  
+    if(root.right != null){  
+        root.right.next = root.next != null ? root.next.left : null;  
+    }  
+    fillNextRecursion(root.left);  
+    fillNextRecursion(root.right);  
+}
+```
+
+`Time Complexity:` O(n)
+
+## Generic Tree
+
+![[GenericTree.png]]
+*Represent the Generic tree in terms of nodes*
+
+```java
+class TreeNode {  
+    int data;  
+    TreeNode firstChild;  
+    TreeNode nextSibling;  
+  
+    public TreeNode(int data) {  
+        this.data = data;  
+    }  
+  
+    @Override  
+    public String toString() {  
+        return data + "";  
+    }  
+}
+```
+
+*Create generic tree*
+
+```java
+TreeNode createGenericTree() {  
+    TreeNode root = new TreeNode(1);  
+    root.firstChild = new TreeNode(2);  
+    root.firstChild.nextSibling = new TreeNode(3);  
+  
+    root.firstChild.nextSibling.nextSibling = new TreeNode(4);  
+    root.firstChild.nextSibling.nextSibling.nextSibling = new TreeNode(5);  
+  
+    root.firstChild.nextSibling.firstChild = new TreeNode(6);  
+    root.firstChild.nextSibling.firstChild.nextSibling = new TreeNode(7);  
+  
+    root.firstChild.nextSibling.nextSibling.firstChild = new TreeNode(8);  
+    root.firstChild.nextSibling.nextSibling.firstChild.nextSibling = new TreeNode(9);  
+    return root;  
+  
+  
+}
+```
+36. Find the sum of all elements of the tree
+
+```java
+int findSum(TreeNode root) {  
+    if (root == null) return 0;  
+    return root.data + findSum(root.firstChild) + findSum(root.nextSibling);  
+}
+```
+
+`output:` 45\
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
