@@ -1,5 +1,5 @@
 # Problems on Binary Tree
-![binary_tree.png](https://github.com/pkumar2991/DSA/blob/main/binary_tree.png)
+![binary_tree.png](https://github.com/pkumar2991/DSA/blob/main/images/binary_tree.png)
 
 ## Binary Tree
 1. Find maximum of a binary tree
@@ -875,6 +875,9 @@ CharNode buildTreeWithPreOrder(char[] preorder, int index) {
 34. Fill the next pointer of each node in the tree/ Populate next pointer of each node
 
 ![[populateNextPointer.png]]
+
+![populateNextPointer.png](https://github.com/pkumar2991/DSA/blob/main/images/populateNextPointer.png)
+
 *`Condition:`* 
 -  By default, next Pointer would be null for each node
 -  If the right child of the node is null, next pointer would be null
@@ -940,6 +943,9 @@ void fillNextRecursion(Node root) {
 ## Generic Tree
 
 ![[GenericTree.png]]
+
+![GenericTree.png](https://github.com/pkumar2991/DSA/blob/main/images/GenericTree.png)
+
 *Represent the Generic tree in terms of nodes*
 
 ```java
