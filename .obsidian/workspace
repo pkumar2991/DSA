@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "76bf8c3625e6e396",
+        "id": "f530add9b3fa2849",
         "type": "leaf",
         "state": {
           "type": "markdown",
@@ -95,8 +95,8 @@
               "type": "outgoing-link",
               "state": {
                 "file": "Tree/Problems.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "linksCollapsed": true,
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -121,18 +121,18 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "903bea3ab531a9d1",
+  "active": "f530add9b3fa2849",
   "lastOpenFiles": [
-    "images/populateNextPointer.png",
-    "Tree/Problems.md",
     "BitManipulation/Problems.md",
+    "Tree/Problems.md",
+    "images/populateNextPointer.png",
     "BitManipulation/Notes.md",
     "images/binary_tree.png",
     "Tree/Notes.md",

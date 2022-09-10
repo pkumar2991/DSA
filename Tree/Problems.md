@@ -999,3 +999,62 @@ int findSum(TreeNode root) {
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
 
+39. Given a parent array P, where P[i] indicates the parent of ith node in the tree (assume parent of root node indicated with -1). Find the height or depth of the tree.
+
+```java
+int findDepthInGenericTree(int parentArr[]) {  
+    int currentDepth = -1;  
+    int maxDepth = -1;  
+    int j = -1;  
+    for (int i = 0; i < parentArr.length; i++) {  
+        currentDepth = 0;  
+        j = i;  
+        while (parentArr[j] != -1) {  
+            currentDepth++;  
+            j = parentArr[j];  
+        }  
+        maxDepth = Math.max(currentDepth, maxDepth);  
+    }  
+    return maxDepth;  
+}
+```
+
+`Input:` [-1, 0, 1, 6, 6, 0, 0, 2, 7]\
+`Output`: 4
+
+`Time Complexity:` O(n^2)
+
+40. Find the siblings count of a given node
+
+```java
+int siblingsCount(TreeNode node){  
+    int count = 0;  
+    while (node.nextSibling != null){  
+        count++;  
+        node = node.nextSibling;  
+    }  
+    return count;  
+}
+```
+
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+41. Find the count of children for a given node.
+
+```java
+int childCount(TreeNode node) {  
+    int count = 0;  
+    node = node.firstChild;  
+    while (node != null) {  
+        count++;  
+        node = node.nextSibling;  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
