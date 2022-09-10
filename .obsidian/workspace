@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "76bf8c3625e6e396",
+        "id": "f530add9b3fa2849",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Tree/Problems.md",
+            "file": "BitManipulation/Problems.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tree/Problems.md",
+                "file": "BitManipulation/Problems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,9 +94,9 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tree/Problems.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
+                "file": "BitManipulation/Problems.md",
+                "linksCollapsed": true,
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -117,21 +117,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tree/Problems.md"
+                "file": "BitManipulation/Problems.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "903bea3ab531a9d1",
+  "active": "4e1840981870051e",
   "lastOpenFiles": [
-    "images/populateNextPointer.png",
     "Tree/Problems.md",
+    "images/populateNextPointer.png",
     "BitManipulation/Problems.md",
     "BitManipulation/Notes.md",
     "images/binary_tree.png",

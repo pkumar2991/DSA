@@ -1,25 +1,25 @@
 1. Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
 
-Example 1:
-
-Input: n = 2  
-Output: [0,1,1]  
-Explanation:  
-0 --> 0  
-1 --> 1  
-2 --> 10  
-
-Example 2:
-
-Input: n = 5  
-Output: [0,1,1,2,1,2]  
-Explanation:  
-0 --> 0  
-1 --> 1  
-2 --> 10  
-3 --> 11  
-4 --> 100  
-5 --> 101
+	Example 1:
+	
+	Input: n = 2  
+	Output: [0,1,1]  
+	Explanation:  
+	0 --> 0  
+	1 --> 1  
+	2 --> 10  
+	
+	Example 2:
+	
+	Input: n = 5  
+	Output: [0,1,1,2,1,2]  
+	Explanation:  
+	0 --> 0  
+	1 --> 1  
+	2 --> 10  
+	3 --> 11  
+	4 --> 100  
+	5 --> 101
 
 [Counting Bits](https://leetcode.com/problems/counting-bits/)
 
@@ -56,3 +56,92 @@ int[] countingBits2(int n) {
 
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
+
+2. Reverse bits of a given 32 bits unsigned integer.
+[Reverse Bits](https://leetcode.com/problems/reverse-bits/)
+
+```java
+int reverseBits(int n) {  
+    int res = 0;  
+    for (int i = 31; i >= 0; i--) {  
+        if ((n & 1) != 0)  
+            res = res | (n & 1) << i;  
+        n = n >> 1;  
+    }  
+    return res;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+3. No of 1 bits in the given number (**Hamming Weight**)
+[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
+
+```java
+int noOfOneBits(int n) {  
+    int count = 0;  
+    while (n != 0) {  
+        n = n & n - 1;  
+        count++;  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+4. Find the total number of set bits.(**Hamming Distance**)
+[Hamming Distance](https://leetcode.com/problems/hamming-distance/)
+
+```java
+int findHammingDistance(int x, int y) {  
+    int xor = x ^ y;  
+    int count = 0;  
+    while (xor != 0) {  
+        xor = xor & xor - 1;  
+        count++;  
+    }  
+    return count;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+5. Find Bitwise AND of Numbers Range
+[Bitwise AND of Numbers Range](https://leetcode.com/problems/bitwise-and-of-numbers-range/)
+
+```java
+int rangeBitwiseAnd(int left, int right) {  
+    int shiftCount = 0;  
+    while (left != right) {  
+        left = left >> 1;  
+        right = right >> 1;  
+        shiftCount++;  
+    }  
+    return left << shiftCount;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+6. Find if the number is power of 2.
+[Power of Two](https://leetcode.com/problems/power-of-two/)
+
+```java
+public boolean isPowerOfTwo(int n) {
+      if (n <= 0) return false;
+        return (n & (n-1)) == 0;
+}
+```
+
+`Time Complexity:` O(1)\
+`Space Complexity:` O(1)
+
+7. Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+
+
+
