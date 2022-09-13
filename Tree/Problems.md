@@ -1058,3 +1058,44 @@ int childCount(TreeNode node) {
 `Time Complexity:` O(n)\
 `Space Complexity:` O(1)
 
+42. Find if given two trees are **Isomorphic** to each other.
+
+`Isomorphic Tree:`  Two trees are isomorphic if they are equal in structure even though value at each node is not same.
+
+```java
+boolean isIsomorphicTree(Node root1, Node root2) {  
+    if (root1 == null && root2 == null) {  
+        return true;  
+    }  
+    if ((root1 == null && root2 != null) || (root1 != null && root2 == null)) {  
+        return false;  
+    }  
+    return isIsomorphicTree(root1.left, root2.left) && isIsomorphicTree(root1.right, root2.right);  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+
+43. Find if the given two trees are quasi-isomorphic to each other or not.
+
+`Quasi-Isomorphic`: Tree will be quasi isomorphic if any subtree satisfies either of following conditions.
+-  **Isomorphic Tree**: Structure of one subtree tree is identical to another subtree.
+-  **Mirror Tree:** Structure of one subtree is mirror of another subtree.
+
+```java
+boolean isQuasiIsomorphicTree(Node root1, Node root2) {  
+    if (root1 == null && root2 == null) {  
+        return true;  
+    }  
+    if ((root1 == null && root2 != null) || (root1 != null && root2 == null)) {  
+        return false;  
+    }  
+    return (isQuasiIsomorphicTree(root1.left, root2.left) && isQuasiIsomorphicTree(root2.right, root2.right)  
+            || (isQuasiIsomorphicTree(root1.left, root2.right) && isQuasiIsomorphicTree(root1.right, root2.left)));  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(n)
+

@@ -95,7 +95,7 @@
               "type": "outgoing-link",
               "state": {
                 "file": "Tree/Problems.md",
-                "linksCollapsed": true,
+                "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
             }
@@ -128,7 +128,7 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "f530add9b3fa2849",
+  "active": "4e1840981870051e",
   "lastOpenFiles": [
     "BitManipulation/Problems.md",
     "Tree/Problems.md",
