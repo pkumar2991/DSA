@@ -1099,3 +1099,103 @@ boolean isQuasiIsomorphicTree(Node root1, Node root2) {
 `Time Complexity:` O(n)\
 `Space Complexity:` O(n)
 
+44. **Pending**
+
+## Threaded Binary Tree
+
+![[ThreadedBinaryTree.png]]
+
+
+### Classifying Threaded Binary Trees
+- Left Threaded Binary Trees - Predecessor info stored only in one of the left subtree
+- Right Threaded Binary Trees - Successor info stored only in one of the right subtree
+- Fully Threaded Binary Trees - Predecessor info stored in left pointer and Successor info stored in right pointer.
+
+### Types of Threaded Binary Trees
+- PreOrder Threaded Binary Tree - Left pointer stores predecessor of preOrder and right pointer stores successor of preOrder.
+- InOrder Threaded Binary Tree - Left pointer stores predecessor of InOrder and right pointer stores successor of InOrder.
+- PostOrder Threaded Binary Tree - Left pointer stores predecessor of PostOrder and right pointer stores successor of PostOrder.
+
+**Threaded Binary Tree Node**
+
+```java
+class ThreadedBinaryTreeNode {  
+    int data;  
+    ThreadedBinaryTreeNode left;  
+    ThreadedBinaryTreeNode right;  
+    int lTag;  
+    int rTag;  
+  
+    public ThreadedBinaryTreeNode(int data) {  
+        this.data = data;  
+    }  
+  
+    @Override  
+    public String toString() {  
+        return data + "";  
+    }  
+}
+```
+
+**Create InOrder Threaded Binary Tree**
+
+```java
+ThreadedBinaryTreeNode createThreadedBinaryTree() {  
+    ThreadedBinaryTreeNode dummy = new ThreadedBinaryTreeNode(-1);  
+  
+    ThreadedBinaryTreeNode root = new ThreadedBinaryTreeNode(1);  
+    root.lTag = 1;  
+    root.rTag = 1;  
+    root.left = new ThreadedBinaryTreeNode(2);  
+    root.left.rTag = 1;  
+    root.left.lTag = 1;  
+    root.right = new ThreadedBinaryTreeNode(3);  
+    root.right.rTag = 1;  
+    root.right.lTag = 1;  
+  
+    root.left.left = new ThreadedBinaryTreeNode(4);  
+    root.left.left.lTag = 0;  
+    root.left.left.rTag = 0;  
+    root.left.left.left = dummy;  
+    root.left.left.right = root.left;  
+    root.left.right = new ThreadedBinaryTreeNode(5);  
+    root.left.right.lTag = 0;  
+    root.left.right.rTag = 0;  
+    root.left.right.right = root;  
+    root.left.right.left = root.left;  
+  
+    root.right.left = new ThreadedBinaryTreeNode(6);  
+    root.right.left.lTag = 0;  
+    root.right.left.rTag = 0;  
+    root.right.left.left = root;  
+    root.right.right = new ThreadedBinaryTreeNode(7);  
+    root.right.right.lTag = 0;  
+    root.right.right.rTag = 0;  
+    root.right.right.left = root.right;  
+    root.right.right.right = dummy;  
+  
+    dummy.right = dummy;  
+    dummy.left = root;  
+    dummy.lTag = 1;  
+    dummy.rTag = 1;  
+  
+    return root;  
+}
+```
+
+**Find Inorder Successor in InOrder Threaded Binary Tree**
+
+```java
+ThreadedBinaryTreeNode findInOrderSuccessor(ThreadedBinaryTreeNode root) {  
+    if (root == null) return null;  
+    if (root.rTag == 0) {  
+        return root.right;  
+    } else {  
+        ThreadedBinaryTreeNode current = root.right;  
+        while (current.lTag == 1) {  
+            current = current.left;  
+        }  
+        return current;  
+    }  
+}
+```
