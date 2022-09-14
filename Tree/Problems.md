@@ -1104,7 +1104,7 @@ boolean isQuasiIsomorphicTree(Node root1, Node root2) {
 ## Threaded Binary Tree
 
 ![[ThreadedBinaryTree.png]]
-
+![ThreadedBinaryTree.png](https://github.com/pkumar2991/DSA/blob/main/images/ThreadedBinaryTree.png)
 
 ### Classifying Threaded Binary Trees
 - Left Threaded Binary Trees - Predecessor info stored only in one of the left subtree
