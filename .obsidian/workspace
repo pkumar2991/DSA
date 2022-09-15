@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0a7f19cb8a0cfeba",
@@ -132,14 +131,15 @@
   },
   "active": "f530add9b3fa2849",
   "lastOpenFiles": [
-    "BitManipulation/Problems.md",
-    "Tree/Problems.md",
+    "images/BST.png",
     "images/populateNextPointer.png",
-    "BitManipulation/Notes.md",
+    "images/GenericTree.png",
     "images/binary_tree.png",
+    "Tree/Problems.md",
+    "images/ThreadedBinaryTree.png",
+    "BitManipulation/Problems.md",
+    "BitManipulation/Notes.md",
     "Tree/Notes.md",
-    "Pasted image 20220823073155.png.md",
-    "Pasted image 20220823073155.png",
-    "Readme.md"
+    "Pasted image 20220823073155.png.md"
   ]
 }

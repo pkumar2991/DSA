@@ -1144,40 +1144,41 @@ ThreadedBinaryTreeNode createThreadedBinaryTree() {
     ThreadedBinaryTreeNode dummy = new ThreadedBinaryTreeNode(-1);  
   
     ThreadedBinaryTreeNode root = new ThreadedBinaryTreeNode(1);  
-    root.lTag = 1;  
-    root.rTag = 1;  
-    root.left = new ThreadedBinaryTreeNode(2);  
-    root.left.rTag = 1;  
-    root.left.lTag = 1;  
-    root.right = new ThreadedBinaryTreeNode(3);  
-    root.right.rTag = 1;  
-    root.right.lTag = 1;  
-  
-    root.left.left = new ThreadedBinaryTreeNode(4);  
-    root.left.left.lTag = 0;  
-    root.left.left.rTag = 0;  
-    root.left.left.left = dummy;  
-    root.left.left.right = root.left;  
-    root.left.right = new ThreadedBinaryTreeNode(5);  
-    root.left.right.lTag = 0;  
-    root.left.right.rTag = 0;  
-    root.left.right.right = root;  
-    root.left.right.left = root.left;  
-  
-    root.right.left = new ThreadedBinaryTreeNode(6);  
-    root.right.left.lTag = 0;  
-    root.right.left.rTag = 0;  
-    root.right.left.left = root;  
-    root.right.right = new ThreadedBinaryTreeNode(7);  
-    root.right.right.lTag = 0;  
-    root.right.right.rTag = 0;  
-    root.right.right.left = root.right;  
-    root.right.right.right = dummy;  
-  
-    dummy.right = dummy;  
-    dummy.left = root;  
-    dummy.lTag = 1;  
-    dummy.rTag = 1;  
+	root.lTag = 1;  
+	root.rTag = 1;  
+	root.left = new ThreadedBinaryTreeNode(2);  
+	root.left.rTag = 1;  
+	root.left.lTag = 1;  
+	root.right = new ThreadedBinaryTreeNode(3);  
+	root.right.rTag = 1;  
+	root.right.lTag = 1;  
+	  
+	root.left.left = new ThreadedBinaryTreeNode(4);  
+	root.left.left.lTag = 0;  
+	root.left.left.rTag = 0;  
+	root.left.left.left = dummy;  
+	root.left.left.right = root.left;  
+	root.left.right = new ThreadedBinaryTreeNode(5);  
+	root.left.right.lTag = 0;  
+	root.left.right.rTag = 0;  
+	root.left.right.right = root;  
+	root.left.right.left = root.left;  
+	  
+	root.right.left = new ThreadedBinaryTreeNode(6);  
+	root.right.left.lTag = 0;  
+	root.right.left.rTag = 0;  
+	root.right.left.left = root;  
+	root.right.left.right = root.right;  
+	root.right.right = new ThreadedBinaryTreeNode(7);  
+	root.right.right.lTag = 0;  
+	root.right.right.rTag = 0;  
+	root.right.right.left = root.right;  
+	root.right.right.right = dummy;  
+	  
+	dummy.right = dummy;  
+	dummy.left = root;  
+	dummy.lTag = 1;  
+	dummy.rTag = 1;
   
     return root;  
 }
@@ -1199,3 +1200,148 @@ ThreadedBinaryTreeNode findInOrderSuccessor(ThreadedBinaryTreeNode root) {
     }  
 }
 ```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+**Print InOrder Traversal of the Threaded Tree**
+
+*Start with Dummy node and ends the search when root is Dummy Node.*
+
+```java
+void inOrderTraversal(ThreadedBinaryTreeNode root) {  
+    ThreadedBinaryTreeNode p = findInOrderSuccessor(root);  
+    while (p != root) {  
+        System.out.print(p.data + ",");  
+        p = findInOrderSuccessor(p);  
+    }  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+## Binary Search Tree (BST)
+In binary search trees, all the left subtree element should be less than root data and all the right subtree elements should be greater than root data. This is called Binary Search Tree.
+
+![[BST.png]]
+**Create Binary Search Tree**
+
+```java
+Node createBST() {  
+    Node node = new Node(7);  
+    node.left = new Node(4);  
+    node.right = new Node(9);  
+  
+    node.left.left = new Node(2);  
+    node.left.right = new Node(5);  
+  
+    return node;  
+}
+```
+
+**Find an Element in Binary Search Tree(Recursive)**
+
+```java
+Node findEltInBST(Node root, int data) {  
+    if (root == null) return null;  
+    if (root.data == data) return root;  
+    if (data < root.data) {  
+        return findEltInBST(root.left, data);  
+    } else {  
+        return findEltInBST(root.right, data);  
+    }  
+}
+
+// Non-Recursive Solution
+Node findEltInBSTNonRecursive(Node root, int data) {  
+    if (root == null) return null;  
+  
+    while (root != null) {  
+        if (root.data == data) return root;  
+        else if (data < root.data)  
+            root = root.left;  
+        else  
+            root = root.right;  
+    }  
+    return root;  
+}
+```
+
+`Time Complexity:` O(log n) - If BST is not skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(n)
+
+**Find minimum element in BST**
+
+```java
+Node findMinBST(Node root) {  
+    if (root == null) return null;  
+    if (root.left == null) return root;  
+    return findMinBST(root.left);  
+}
+
+// Non-Recursive Solution
+Node findMinBSTNonRecursive(Node root) {  
+    if (root == null) return null;  
+   while(root.left != null){  
+       root = root.left;  
+   }  
+   return root;  
+}
+```
+
+`Output:` 2
+
+`Time Complexity:` O(log n) - If BST is NOT skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(n)
+
+**Find maximum element in BST**
+
+```java
+Node findMaxBST(Node root) {  
+    if (root == null) return null;  
+    if (root.right == null) return root;  
+    return findMaxBST(root.right);  
+}  
+// Non-Recursive Solution  
+Node findMaxBSTNonRecursive(Node root) {  
+    if (root == null) return null;  
+    while (root.right != null) {  
+        root = root.right;  
+    }  
+    return root;  
+}
+```
+
+`Time Complexity:` O(log n) - If BST is NOT skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(n)
+
+`Notes` : Assuming all nodes element are distinct
+- InOrder predecessor - max value in the left subtree. If node does not have left child then nearest first left ancesstor would be its predecessor.
+- InOrder successor - min value in the right subtree
+
+**Insert element in a BST**
+
+```java
+Node insertEltBST(Node root, int data) {  
+    if (root == null) {  
+        root = new Node(data);  
+        return root;  
+    }  
+    if (root.data == data) return null;  
+    if (data < root.data) {  
+        root.left = insertEltBST(root.left, data);  
+    } else {  
+        root.right = insertEltBST(root.right, data);  
+    }  
+    return root;  
+}
+```
+
+`Time Complexity:` O(log n) - If BST is NOT skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(n) - for recursion , O(1) - for iterative Version
+
