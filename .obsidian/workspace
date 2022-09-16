@@ -132,10 +132,10 @@
   "active": "f530add9b3fa2849",
   "lastOpenFiles": [
     "images/BST.png",
-    "images/populateNextPointer.png",
-    "images/GenericTree.png",
     "images/binary_tree.png",
     "Tree/Problems.md",
+    "images/populateNextPointer.png",
+    "images/GenericTree.png",
     "images/ThreadedBinaryTree.png",
     "BitManipulation/Problems.md",
     "BitManipulation/Notes.md",

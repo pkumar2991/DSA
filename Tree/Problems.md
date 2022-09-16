@@ -714,7 +714,7 @@ boolean areMirrorTrees(Node root1, Node root2) {
 `Space Complexity:` O(n)
 
 26. Find least common ancestor(LCA) for two nodes in a tree
-*The Lowest Common Ancestor (LCA) of two nodes ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com") and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com") in a rooted tree is the lowest (deepest) node that is an ancestor of both ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com") and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com").*
+*The Lowest Common Ancestor (LCA) of two nodes ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com"and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com") in a rooted tree is the lowest (deepest) node that is an ancestor of both ![u](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-e817933126862db10ae510d35359568e_l3.svg "Rendered by QuickLaTeX.com") and ![v](https://www.baeldung.com/wp-content/ql-cache/quicklatex.com-796872219106704832bd95ce08640b7b_l3.svg "Rendered by QuickLaTeX.com").*
 
 ```java
 Node findLCA(Node root, int node1, int node2) {  
@@ -1323,7 +1323,7 @@ Node findMaxBSTNonRecursive(Node root) {
 - InOrder predecessor - max value in the left subtree. If node does not have left child then nearest first left ancesstor would be its predecessor.
 - InOrder successor - min value in the right subtree
 
-**Insert element in a BST**
+**Insert element in BST**
 
 ```java
 Node insertEltBST(Node root, int data) {  
@@ -1344,4 +1344,115 @@ Node insertEltBST(Node root, int data) {
 `Time Complexity:` O(log n) - If BST is NOT skew tree
 `Time Complexity:` O(n) - if BST is skew tree\
 `Space Complexity:` O(n) - for recursion , O(1) - for iterative Version
+
+**Delete a node in BST **
+
+```java
+Node deleteNodeBST(Node root, int data) {  
+    if (root == null) return null;  
+    else if (root.data > data) {  
+        root.left = deleteNodeBST(root.left, data);  
+    } else if (root.data < data) {  
+        root.right = deleteNodeBST(root.right, data);  
+    } else {  
+        if (root.left != null && root.right != null) {  
+            Node temp = root;  
+            Node max = findMaxBST(temp.left);  
+            root.data = max.data;  
+            root.left = deleteNodeBST(root.left, root.data);  
+        } else if (root.left != null) {  
+            root = root.left;  
+        } else if (root.right != null) {  
+            root = root.right;  
+        } else {  
+            root = null;  
+        }  
+    }  
+    return root;  
+}
+```
+
+`Time Complexity:` O(log n) - If BST is NOT skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(n) - for recursion , O(1) - for iterative Version
+
+47. Find LCA in BST assuming that given element exist in the tree
+
+```java
+Node findLCABST(Node root, int node1, int node2) {  
+    while (true) {  
+        if ((node1 < root.data && root.data < node2) || (node2 < root.data && root.data < node1)) {  
+            return root;  
+        }  
+        if (node1 < root.data && node2 < root.data) {  
+            root = root.left;  
+        } else if (node1 > root.data && node2 > root.data) {  
+            root = root.right;  
+        } else {  
+            break;  
+        }  
+    }  
+    return root;  
+}
+```
+
+`Time Complexity:` O(log n) - If BST is NOT skew tree
+`Time Complexity:` O(n) - if BST is skew tree\
+`Space Complexity:` O(1) - for iterative Version
+
+48. Finding the shortest path between two nodes in BST.
+*Shortest path between two nodes in BST would be the LCA of two nodes.*
+
+49. Count the number of BSTs possible with n nodes
+*Dynamic Programming Problem*
+
+51. Find if the given tree is BST or not.
+
+```java
+boolean isBST(Node root) {  
+    if (root == null) return true;  
+    if (root.left != null && findMaxBST(root.left).data > root.data)  
+        return false;  
+    if (root.right != null && findMinBST(root.right).data < root.data)  
+        return false;  
+    if (!isBST(root.left) || !isBST(root.right)) {  
+        return false;  
+    }  
+    return true;  
+}
+```
+
+`Time Complexity:` O(n^2) 
+`Space Complexity:` O(n)
+
+52. Find if the given tree is BST or not (Improved Complexity).
+
+```java
+boolean isBST1(Node root, int min, int max) {  
+    if (root == null) return true;  
+    return (root.data > min && root.data < max) && (isBST1(root.left, min, root.data)) && (isBST1(root.right, root.data, max));  
+}
+```
+
+`Time Complexity:` O(n) 
+`Space Complexity:` O(n)
+
+53. Find if the given tree is BST or not (Improved Complexity) using InOrder
+
+```java
+boolean isBSTUsingInOrder(Node root, int previous) {  
+    if (root == null) return true;  
+    if (!isBSTUsingInOrder(root.left, previous)) {  
+        return false;  
+    }  
+    if (root.data < previous) {  
+        return false;  
+    }  
+    previous = root.data;  
+    return isBSTUsingInOrder(root.right, previous);  
+}
+```
+
+`Time Complexity:` O(n) 
+`Space Complexity:` O(n)
 
