@@ -142,6 +142,67 @@ public boolean isPowerOfTwo(int n) {
 `Space Complexity:` O(1)
 
 7. Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+https://leetcode.com/problems/single-number-ii/submissions/
 
 
+**Best Solution**
+
+```java
+int singleNumber2(int nums[]) {  
+    int one = 0;  
+    int two = 0;  
+  
+    for (int num : nums) {  
+        one = (one ^ num) & (~two);  
+        two = (two ^ num) & (~one);  
+    }  
+    return one;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+**Alternate approach**
+```java
+int singleNumber2Alt(int[] nums) {  
+    int len = nums.length;  
+    if (len == 0) return -1;  
+    if (len == 1) return nums[0];  
+    Arrays.sort(nums);  
+    if (nums[0] != nums[1]) {  
+        return nums[0];  
+    } else if (nums[len - 1] != nums[len - 2]) {  
+        return nums[len - 1];  
+    } else {  
+        for (int i = 1; i < len; i += 3) {  
+            if (nums[i] != nums[i - 1]) {  
+                return nums[i - 1];  
+            }  
+        }  
+    }  
+    return -1;  
+}
+```
+
+`Time Complexity:` O(n logn) + O(n)\
+`Space Complexity:` O(1)
+
+8. Find sum of two integers without using the operators `+`  and `-`.
+
+https://leetcode.com/problems/sum-of-two-integers/
+
+```java
+int sumOfTwoIntegers(int a, int b) {  
+    while (b != 0) {  
+        int temp = (a & b) << 1;  
+        a = a ^ b;  
+        b = temp;  
+    }  
+    return a;  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
 
