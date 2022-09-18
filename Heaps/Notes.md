@@ -50,8 +50,8 @@ Heap is used to implement Priority Queue. Applications for Priority queue are fo
 Heap can be used to find minimum or maximum item among list of items. 
 
 In this case, Heap would be the best choice as it's time complexity for finiding min and max, inserting and deleting is fat better than other linear data structures.
-
 ![[TimeComplexity_Heap_Analysis.png]]
+![[TimeComplexity_Heap_Analysis.png]](https://github.com/pkumar2991/DSA/blob/main/images/TimeComplexity_Heap_Analysis.png)
 
 ## What is Binary Heap?
 Binary heap may have up to two children.
