@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "BitManipulation/Notes.md",
+            "file": "Heaps/Notes.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "BitManipulation/Notes.md",
+                "file": "Heaps/Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "BitManipulation/Notes.md",
+                "file": "Heaps/Notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "BitManipulation/Notes.md"
+                "file": "Heaps/Notes.md"
               }
             }
           }
@@ -131,15 +131,15 @@
   },
   "active": "f530add9b3fa2849",
   "lastOpenFiles": [
-    "BitManipulation/Problems.md",
-    "BitManipulation/Notes.md",
-    "Heaps/Notes.md",
     "Tree/Problems.md",
+    "Heaps/Notes.md",
+    "Tree/Notes.md",
+    "images/TimeComplexity_Heap_Analysis.png",
+    "images/ThreadedBinaryTree.png",
+    "BitManipulation/Notes.md",
+    "BitManipulation/Problems.md",
     "images/BST.png",
     "images/binary_tree.png",
-    "images/populateNextPointer.png",
-    "images/GenericTree.png",
-    "images/ThreadedBinaryTree.png",
-    "Tree/Notes.md"
+    "images/populateNextPointer.png"
   ]
 }
