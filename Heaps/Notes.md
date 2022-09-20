@@ -123,8 +123,8 @@ public void heapifyUp(int[] heap, int i) {
 ```java
 void buildHeapFromArray(int[] heap, int n) {  
     if (n == 0) return;  
-    if (n > this.capacity) {  
-        resizeHeap();  
+    if (n > heap.length) {  
+        resizeHeap(heap, n - heap.length);  
     }  
     int lastInternalNode = (n / 2) - 1;  
     for (int i = lastInternalNode; i >= 0; i--) {  
