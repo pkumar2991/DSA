@@ -1,5 +1,5 @@
 # Priority Queues and Heaps
-
+#DSA #Heaps
 ## What is a Heap?
 Heap is a special data structure. It is a tree with special properties and can also be classified as Complete Binary Tree ( **Perfect Binary Tree** or **Almost Complete Binary Tree**).
 
@@ -72,23 +72,23 @@ Heapify down is also know as **Percolate Down**.
 
 #### Percolate Down (Heapify Down)
 ```java
-public void heapifyDown(int[] heap, int i) {  
+public void heapifyDown(int[] heap, int i, int heapSize) {  
     int l, r, max = i, temp;  
-    int size = heap.length;  
+  
     l = (2 * i) + 1;  
     r = (2 * i) + 2;  
-    if (l < size && heap[l] > heap[max]) {  
+    if (l < heapSize && heap[l] > heap[max]) {  
         max = l;  
     }  
   
-    if (r < size && heap[r] > heap[max]) {  
+    if (r < heapSize && heap[r] > heap[max]) {  
         max = r;  
     }  
     if (max != i) { // swap the values  
         temp = heap[i];  
         heap[i] = heap[max];  
         heap[max] = temp;  
-        heapifyDown(heap, max);  
+        heapifyDown(heap, max, heapSize);  
     }  
 }
 ```
@@ -128,7 +128,7 @@ void buildHeapFromArray(int[] heap, int n) {
     }  
     int lastInternalNode = (n / 2) - 1;  
     for (int i = lastInternalNode; i >= 0; i--) {  
-        heapifyDown(heap, i);  
+        heapifyDown(heap, i, n);  
     }  
 }
 ```
@@ -166,14 +166,14 @@ int[] resizeHeap(int[] heap, int capacityIncreaseBy) {
 Returns the maximum value of the heap after removing it from the Max_Heap. After extraction, heap should remain Max_Heap.
 
 ```java
-int extractMax(int[] heap) {  
-    if (heap.length == 0) return Integer.MIN_VALUE;  
+int extractMax(int[] heap, int heapSize) {  
+    if (heapSize == 0) return Integer.MIN_VALUE;  
     // Save the Max Value  
     int maxValue = heap[0];  
     // Replace the Max value with the last element of Max Heap  
-    heap[0] = heap[heap.length - 1];  
+    heap[0] = heap[heapSize - 1];  
     // Heapify the Max heap  
-    heapifyDown(heap, 0);  
+    heapifyDown(heap, 0, heapSize);  
     return maxValue;  
 }
 ```
@@ -222,7 +222,7 @@ public void decreaseKey(int[] heap, int i, int newValue) throws Exception {
         throw new Exception("Invalid Operation. Provide lesser value.");  
     }  
     heap[i] = newValue;  
-    heapifyDown(heap, i);  
+    heapifyDown(heap, i, heap.length);  
 }
 ```
 
@@ -262,3 +262,27 @@ int[] insertKey(int[] heap, int newValue) {
 | Delete Random Element | O(N)            | O(1)                                   |
 | Search Random Element | O(N)            | O(1)                                   | 
 
+### Heap Sort Algorithm
+Sorting an array using heap is Heap Sort.
+- Build Heap from the given array (In Order traversal of a complete binary tree)
+- Extract Max/Min Heap
+- Apply Heapify.
+
+```java
+void heapSortAsc(int[] heap) {  
+    buildHeapFromArray(heap, heap.length);  
+    System.out.println(Arrays.toString(heap));  
+    int heapSize = heap.length;  
+    for (int i = heapSize - 1; i > 0; i--) {  
+        int max = extractMax(heap, heapSize);  
+        heap[heapSize - 1] = max;  
+        heapSize--;  
+    }  
+}
+```
+
+`Input:` [3, 6, 5, 0, 8, 2, 1, 9]\
+`Output:` [0, 1, 2, 3, 5, 6, 8, 9]
+
+`Time Complexity:` O(n log n)\
+`Space Complexity:`  O(log n)

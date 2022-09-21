@@ -1,4 +1,5 @@
 ## Tree Traversal
+#DSA #Tree
 - Pre-Order (D-L-R)
 - In-Order (L-D-R)
 - Post-Order (L-R-D)

@@ -1,4 +1,5 @@
 # Problems on Binary Tree
+#Tree 
 ![binary_tree.png](https://github.com/pkumar2991/DSA/blob/main/images/binary_tree.png)
 ![[binary_tree.png]]
 ## Binary Tree

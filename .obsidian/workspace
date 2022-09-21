@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "f530add9b3fa2849",
+        "id": "51cbe8bc18cedb39",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Heaps/Notes.md",
+            "file": "Tree/Problems.md",
             "mode": "source",
             "source": false
           }
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#DSA",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0a7f19cb8a0cfeba",
@@ -78,14 +77,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Heaps/Notes.md",
+                "file": "Tree/Problems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -95,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Heaps/Notes.md",
+                "file": "Tree/Problems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -118,28 +117,36 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Heaps/Notes.md"
+                "file": "Tree/Problems.md"
               }
+            }
+          },
+          {
+            "id": "80d15392373ccc5d",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
     "width": 300
   },
-  "active": "f530add9b3fa2849",
+  "active": "903bea3ab531a9d1",
   "lastOpenFiles": [
-    "Tree/Problems.md",
-    "Heaps/Notes.md",
     "Tree/Notes.md",
+    "BitManipulation/Problems.md",
+    "BitManipulation/Notes.md",
+    "Heaps/Notes.md",
+    "Tree/Problems.md",
+    "Readme.md",
+    "2022-09-20.md",
     "images/TimeComplexity_Heap_Analysis.png",
     "images/ThreadedBinaryTree.png",
-    "BitManipulation/Notes.md",
-    "BitManipulation/Problems.md",
-    "images/BST.png",
-    "images/binary_tree.png",
-    "images/populateNextPointer.png"
+    "images/BST.png"
   ]
 }
