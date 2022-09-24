@@ -7,7 +7,7 @@ Heap is a special data structure. It is a tree with special properties and can a
 - Leaves should present only at last and second last level
 - Leaves at same level must be added from left to right
 
-**Maximum No of nodes at height (level) h =** 2^h
+**Maximum No of nodes at height (level) h =** 2^h\
 **Maximum No of nodes in a complete binary tree =** (2^(h+1) - 1)
 
 In a perfect binary tree, **No of Internal Nodes =** No of leaves - 1.
@@ -16,8 +16,9 @@ To represent a Heap, an array is used. The maximum requried size of the array wo
 
 **Height Of Tree (Complete Binary Tree)** = floor (log N) of base 2
 
-For Zero based index
-**Range of leaves =** (N/2) to (N-1)
+For Zero based index:
+
+**Range of leaves =** (N/2) to (N-1)\
 **Range of Internal Nodes** = 0 to (N/2) - 1
 
 ### Required Property
@@ -49,7 +50,7 @@ Heap is used to implement Priority Queue. Applications for Priority queue are fo
 ## When to use Heap?
 Heap can be used to find minimum or maximum item among list of items. 
 
-In this case, Heap would be the best choice as it's time complexity for finiding min and max, inserting and deleting is fat better than other linear data structures.
+In this case, Heap would be the best choice as it's time complexity for finiding min and max, inserting and deleting is far better than other linear data structures.
 
 ![[TimeComplexity_Heap_Analysis.png]](https://github.com/pkumar2991/DSA/blob/main/images/TimeComplexity_Heap_Analysis.png)
 
@@ -59,11 +60,11 @@ Binary heap may have up to two children.
 ### Representing Heaps
 Heap can be represented as array. It would be level traversal of a binary heap. 
 
-| Node               | Index         |
-|:------------------:|:-------------:|
-| Parent Node | (i - 1) / 2 |
-| Left Node  | 2*i + 1|
-| Right Node     |  2*i + 2     |
+| Node       | Index       |
+| ---------- | ----------- |
+| Parent     | (i - 1) / 2 |
+| Left Child | (2 * i) + 1 |
+| Right Node | (2 * i) + 2 | 
 
 ### What is Heapify?
 The process of rearranging the heap by comparing each parent with its children **recursively** is know as Heapify. 
@@ -286,3 +287,97 @@ void heapSortAsc(int[] heap) {
 
 `Time Complexity:` O(n log n)\
 `Space Complexity:`  O(log n)
+
+### Build Stack Using Heap
+#### Create Heap Push
+- Insert an element into the Heap provided Heap Size is not greater than its capacity.
+- Heap Push is **Inserting key** into a heap.
+- New element should be inserted at top of the stack
+- Inserting new value may need to move up to maintain the heap property
+
+```java
+int[] heapPush(int[] heap, int heapSize,int maxHeapSize,int newValue){  
+    if(heapSize == maxHeapSize){  
+        throw new StackOverflowError("Heap Stack is Full");  
+    }  
+    return insertKey(heap,newValue);  
+}
+```
+
+`Input:` [3, 6, 5, 0, 8, 2, 1, 9], 10, 4\
+`Output:` [9, 8, 5, 6, 3, 2, 1, 0, **4**]
+
+`Input:` [3, 6, 5, 0, 8, 2, 1, 9], 10, 19\
+`Output:` [**19**, 9, 5, 8, 3, 2, 1, 0, 6]
+
+`Time Complexity:` O(n log n)\
+`Space Complexity:`  O(log n) -- considering the recursion
+
+#### Create Heap Pop
+- Remove the root element from the Heap provided heap is not Empty.
+- Heap Pop is nothing but **Extract Max** from a heap.
+- Removing root may need to move down to maintain the heap property.
+
+```java
+void heapPop(int[] heap, int heapSize) throws Exception {  
+    if (heapSize == 0) {  
+        throw new Exception("Heap Stack is empty");  
+    }  
+    extractMax(heap, heapSize);  
+}
+```
+
+`Input:` [19, 9, 5, 8, 7, 2, 1, 0, 6, 3], 10\
+`Output:` [9, 8, 5, 6, 7, 2, 1, 0, 3, -1]
+
+`Note:` -1 represents the element at that position is removed.
+
+`Time Complexity:` O(n log n)\
+`Space Complexity:`  O(log n) -- considering the recursion
+
+### HeapifyDown/Percolate Down for Min Heap
+```java
+void heapifyDownMinHeap(int[] minHeap, int i, int heapSize) {  
+    if (heapSize == 0) return;  
+    int min = i;  
+    int left = (2 * i) + 1;  
+    int right = (2 * i) + 2;  
+  
+    if (left < heapSize && minHeap[left] < minHeap[min]) {  
+        min = left;  
+    }  
+    if (right < heapSize && minHeap[right] < minHeap[min]) {  
+        min = right;  
+    }  
+    if (min != i) {  
+        int temp = minHeap[i];  
+        minHeap[i] = minHeap[min];  
+        minHeap[min] = temp;  
+        heapifyDownMinHeap(minHeap, min, heapSize);  
+    }  
+}
+```
+
+### Build Min Heap
+```java
+void buildMinHeapFromArray(int[] arr, int n) {  
+    if (n == 0) return;  
+    if (n > arr.length) {  
+        resizeHeap(arr, n - arr.length);  
+    }  
+    int lastInternalNode = (n / 2) - 1;  
+    for (int i = lastInternalNode; i >= 0; i--) {  
+        heapifyDownMinHeap(arr, i, arr.length);  
+    }  
+}
+```
+
+`Input:` [2, 8, 5, 9, 11, 3, 7, 1], 8\
+`Output:` [1, 2, 3, 8, 11, 5, 7, 9]
+
+`Note:` -1 represents the element at that position is removed.
+
+`Time Complexity:` O(n log n)\
+`Space Complexity:`  O(log n) -- considering the recursion
+
+### Build PriorityQueue Using Heap
