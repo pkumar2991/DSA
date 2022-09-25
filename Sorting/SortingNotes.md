@@ -1,5 +1,14 @@
 #DSA #Sorting
 
+### Time Complexity Chart
+| Sort           | Best      | Avg       | Worst     | Space   | Stable |
+| -------------- | --------- | --------- | --------- | ------- | ------ |
+| Bubble Sort    | O(n)      | O(n^2)    | O(n^2)    | O(1)    | Yes    |
+| Selection Sort | O(n^2)    | O(n^2)    | O(n^2)    | O(1)    | No     |
+| Insertion Sort | O(n)      | O(n^2)    | O(n^2)    | O(1)    | Yes    |
+| Merge Sort     | O(n logn) | O(n logn) | O(n logn) | O(n)    | Yes    |
+| Quick Sort     | O(n logn) | O(n logn) | O(n^2)    | O(logn) | No       |
+
 ### Bubble Sort
 ```java
 void bubbleSort(int[] arr) {  
