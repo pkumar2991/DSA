@@ -195,3 +195,43 @@ void quickSort(int[] arr, int start, int end) {
 `Time Complexity:` O(n^2)\
 `Space Complexity:` O(n logn)
 
+### Binary Search
+ #BinarySearch
+**Iterative**
+```java
+boolean binarySearch(int[] arr, int data) {  
+    if (arr.length == 0) return false;  
+    int low = 0;  
+    int high = arr.length - 1;  
+  
+    while (low <= high) {  
+        int mid = low + (high - low) / 2;  
+        if (arr[mid] == data) return true;  
+        if (arr[mid] < data) {  
+            low = mid + 1;  
+        } else {  
+            high = mid - 1;  
+        }  
+    }  
+    return false;  
+}
+```
+
+**Recursive**
+```java
+boolean binarySearchRecursion(int[] arr, int data, int low, int high) {  
+  
+    int mid = low + (high - low) / 2;  
+    if (low > high) return false;  
+    if (arr[mid] == data) return true;  
+  
+    if (arr[mid] < data) {  
+        return binarySearchRecursion(arr, data, mid + 1, high);  
+    } else {  
+        return binarySearchRecursion(arr, data, low, mid - 1);  
+    }  
+}
+```
+
+`Time Complexity:` O(log n)\
+`Space Complexity:` O(1)
