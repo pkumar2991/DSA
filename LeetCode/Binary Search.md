@@ -59,3 +59,25 @@ int countNegatives(int[][] grid) {
 
 `Time Complexity:` O(m log n)\
 `Space Complexity:` O(1)
+
+[Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
+
+```java
+public int peakIndexInMountainArray(int[] arr) {  
+    int low = 0;  
+    int high = arr.length - 1;  
+    while (low <= high) {  
+        int mid = low + (high - low) / 2;  
+        if (arr[mid] < arr[mid + 1]) {  
+            low = mid + 1;  
+        } else {  
+            high = mid - 1;  
+        }  
+    }  
+    return low;  
+}
+```
+
+`Time Complexity:` O(log n)\
+`Space Complexity:` O(1)
+

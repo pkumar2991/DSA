@@ -1,6 +1,6 @@
-#Heaps 
+#leetCode  #Heaps 
 
-1. #leetCode [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
+[Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
 
 ```java
 public int lastStoneWeight(int[] stones) {  
@@ -30,7 +30,7 @@ public int lastStoneWeight(int[] stones) {
 `Time Complexity:` O(n log n)\
 `Space Complexity:`  O(log n) -- considering the recursion
 
-2. Find Kth largest element in Max Heap.
+Find Kth largest element in Max Heap.
 
 ```java
 int findKthLargestElt(int[] arr, int k) throws Exception {  
