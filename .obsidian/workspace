@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Miscellaneous Algorithm.md",
+            "file": "Trie/Trie Notes.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Miscellaneous Algorithm.md",
+                "file": "Trie/Trie Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Miscellaneous Algorithm.md",
+                "file": "Trie/Trie Notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Miscellaneous Algorithm.md"
+                "file": "Trie/Trie Notes.md"
               }
             }
           },
@@ -138,11 +138,11 @@
   },
   "active": "51cbe8bc18cedb39",
   "lastOpenFiles": [
+    "Miscellaneous Algorithm.md",
     "LeetCode/Binary Search.md",
     "LeetCode/Heap.md",
     "LeetCode/Arrays.md",
     "Sorting And Searching/SortingNotes.md",
-    "Miscellaneous Algorithm.md",
     "Heaps/HeapNotes.md",
     "BitManipulation/Problems.md",
     "Sets/SetNotes.md",
