@@ -115,11 +115,12 @@ public class Trie {
                     if(i+1 == chars.length){
                         return list;
                     }else {
-                        
+
                     }
                 }
             }
         }
+        return null;
     }
 
     public static void main(String[] args) {

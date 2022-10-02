@@ -1,28 +1,6 @@
-#BitManipulation 
-1. Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+#leetCode  #BitManipulation 
 
-	Example 1:
-	
-	Input: n = 2  
-	Output: [0,1,1]  
-	Explanation:  
-	0 --> 0  
-	1 --> 1  
-	2 --> 10  
-	
-	Example 2:
-	
-	Input: n = 5  
-	Output: [0,1,1,2,1,2]  
-	Explanation:  
-	0 --> 0  
-	1 --> 1  
-	2 --> 10  
-	3 --> 11  
-	4 --> 100  
-	5 --> 101
-
-[Counting Bits](https://leetcode.com/problems/counting-bits/)
+1. [Counting Bits](https://leetcode.com/problems/counting-bits/)
 
 ```java
 int[] countingBits1(int n) {  
@@ -142,9 +120,7 @@ public boolean isPowerOfTwo(int n) {
 `Time Complexity:` O(1)\
 `Space Complexity:` O(1)
 
-7. Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
-https://leetcode.com/problems/single-number-ii/submissions/
-
+7. [Single Number - II ](https://leetcode.com/problems/single-number-ii/submissions/)
 
 **Best Solution**
 
@@ -189,9 +165,7 @@ int singleNumber2Alt(int[] nums) {
 `Time Complexity:` O(n logn) + O(n)\
 `Space Complexity:` O(1)
 
-8. Find sum of two integers without using the operators `+`  and `-`.
-
-https://leetcode.com/problems/sum-of-two-integers/
+8. [Sum Of 2 Integers](https://leetcode.com/problems/sum-of-two-integers/)
 
 ```java
 int sumOfTwoIntegers(int a, int b) {  
@@ -207,3 +181,45 @@ int sumOfTwoIntegers(int a, int b) {
 `Time Complexity:` O(n)\
 `Space Complexity:` O(1)
 
+9. [Single Number III](https://leetcode.com/problems/single-number-iii/)
+
+```java
+public int[] singleNumber(int[] nums) {  
+    int xor = 0;  
+    int x = 0;  
+    int y = 0;  
+    for (int num : nums) {  
+        xor ^= num;  
+    }  
+    int rmsb = xor & (-xor);  
+    for (int num : nums) {  
+        if ((num & rmsb) == 0) {  
+            x ^= num;  
+        } else {  
+            y ^= num;  
+        }  
+    }  
+    return new int[]{x, y};  
+}
+```
+
+`Time Complexity:` O(n)\
+`Space Complexity:` O(1)
+
+10. [Power of Four](https://leetcode.com/problems/power-of-four/description/)
+
+```java
+public boolean isPowerOfFour(int n) {  
+    int temp = Integer.parseInt("1010101010101010101010101010101",2);  
+    return (n > 0 && (n & (n-1)) == 0 && (n & temp) != 0);  
+}
+```
+
+`Time Complexity:` O(1)\
+`Space Complexity:` O(1)
+
+11. [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)
+
+```java
+
+```
