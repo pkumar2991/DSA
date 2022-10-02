@@ -134,11 +134,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 100
+    "width": 199
   },
   "active": "51cbe8bc18cedb39",
   "lastOpenFiles": [
     "Miscellaneous Algorithm.md",
+    "Trie/Trie Notes.md",
     "LeetCode/Binary Search.md",
     "LeetCode/Heap.md",
     "LeetCode/Arrays.md",
