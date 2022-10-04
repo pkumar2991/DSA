@@ -223,3 +223,9 @@ public boolean isPowerOfFour(int n) {
 ```java
 
 ```
+
+12. [Decode XORed Array](https://leetcode.com/problems/decode-xored-array/)
+
+```java
+
+```
