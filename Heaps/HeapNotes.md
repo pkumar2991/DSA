@@ -22,7 +22,7 @@ For Zero based index:
 **Range of Internal Nodes** = 0 to (N/2) - 1
 
 ### Required Property
-Value of a node must be greater or equal to (>=) or lesser or equal to (<=) than the value of its childre.
+Value of a node must be greater or equal to (>=) or lesser or equal to (<=) than the value of its children.
 
 ## Types of Heaps
 Based on the property, there are two types of Heaps.

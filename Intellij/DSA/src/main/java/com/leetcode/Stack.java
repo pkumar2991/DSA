@@ -373,20 +373,199 @@ public class Stack {
     void minStackWithNoExtraSpace() {
         Deque<Integer> stack = new ArrayDeque<>();
         // 18,19,29,15,16
-        addFirst(stack, 18);
-        addFirst(stack, 19);
-        addFirst(stack, 29);
-        addFirst(stack, 15);
+        System.out.println(getMinElement(stack));
+        addFirst(stack, -2);
+        addFirst(stack, 0);
+        addFirst(stack, -3);
         System.out.println(getMinElement(stack));
         removeFirst(stack);
-        System.out.println(getMinElement(stack));
+        System.out.println(peekFirst(stack));
     }
 
+    int largestRectangleInHistogram(int[] heights) {
+        int maxArea = 0;
+        //find next left smaller element/ left limit index
+        Deque<Integer> stack = new ArrayDeque<>();
+        int[] leftLimitIndex = new int[heights.length];
+        int[] rightLimitIndex = new int[heights.length];
+
+        for (int i = 0; i < heights.length; i++) {
+            if (stack.isEmpty()) {
+                leftLimitIndex[i] = 0;
+            } else if (stack.size() > 0 && heights[stack.peek()] < heights[i]) {
+                leftLimitIndex[i] = stack.peek() + 1;
+            } else if (stack.size() > 0 && heights[stack.peek()] >= heights[i]) {
+                while (stack.size() > 0 && heights[stack.peek()] >= heights[i]) {
+                    stack.pop();
+                }
+                if (stack.isEmpty()) {
+                    leftLimitIndex[i] = 0;
+                } else {
+                    leftLimitIndex[i] = stack.peek() + 1;
+                }
+            }
+            stack.push(i);
+        }
+        //find next right smaller element / right limit index
+        stack.clear();
+        for (int i = heights.length - 1; i >= 0; i--) {
+            if (stack.isEmpty()) {
+                rightLimitIndex[i] = heights.length - 1;
+            } else if (stack.size() > 0 && heights[stack.peek()] < heights[i]) {
+                rightLimitIndex[i] = stack.peek() - 1;
+            } else if (stack.size() > 0 && heights[stack.peek()] >= heights[i]) {
+                while (stack.size() > 0 && heights[stack.peek()] >= heights[i]) {
+                    stack.pop();
+                }
+                if (stack.isEmpty()) {
+                    rightLimitIndex[i] = heights.length - 1;
+                } else {
+                    rightLimitIndex[i] = stack.peek() - 1;
+                }
+            }
+            stack.push(i);
+        }
+        // Calculate area for each possible rectangle
+        for (int i = 0; i < heights.length; i++) {
+            maxArea = Math.max(maxArea, ((rightLimitIndex[i] - leftLimitIndex[i]) + 1) * heights[i]);
+        }
+        return maxArea;
+    }
+
+    int minCostTreeFromLeafValues(int[] arr) {
+        return -1;
+    }
+
+    int mctFromLeafValues(int[] arr) {
+        int sum = 0;
+        int len = arr.length;
+        Deque<Node> stack = new ArrayDeque<>();
+
+        for (int index = 0; index < len; index++) {
+            Node node = new Node(index, arr[index]);
+            while (!stack.isEmpty() && stack.peekFirst().val <= node.val) {
+                Node poll = stack.pollFirst();
+                if (stack.isEmpty())
+                    sum = sum + poll.val * node.val;
+                else
+                    sum = sum + poll.val * Math.min(node.val, stack.peekFirst().val);
+            }
+            stack.offerFirst(node);
+        }
+        while (stack.size() >= 2) {
+            Node poll = stack.pollFirst();
+            sum = sum + poll.val * stack.peekFirst().val;
+        }
+        return sum;
+    }
+
+    static class Node {
+        int index, val;
+
+        Node(int index, int val) {
+            this.index = index;
+            this.val = val;
+        }
+    }
+
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        if (s.length() % 2 != 0) {
+            return false;
+        } else {
+            char first = s.charAt(0);
+            if (first == ')' || first == ']' || first == '}') {
+                return false;
+            }
+        }
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.offerFirst(c);
+            } else {
+                if (stack.isEmpty()) return false;
+                else {
+                    char top = stack.peekFirst();
+                    if (top == '[' && c != ']') {
+                        return false;
+                    } else if (top == '(' && c != ')') {
+                        return false;
+                    } else if (top == '{' && c != '}') {
+                        return false;
+                    }
+                    stack.pollFirst();
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public List<Integer> postorder(TNode root) {
+        Deque<TNode> stack = new ArrayDeque<>();
+        List<Integer> output = new ArrayList();
+        if(root == null) return output;
+        stack.offerFirst(root);
+        TNode previous = null;
+        while(stack.size() > 0){
+            TNode current = root;
+            for(int i = root.children.size() - 1; i >= 0; i--){
+                current = root.children.get(i);
+                stack.offerFirst(current);
+            }
+            previous = root;
+            root = current;
+            while(root.children == null && stack.size() > 0){
+                root = stack.peekFirst();
+                boolean isPrevious = false;
+                if(root.children != null)
+                for(TNode node : root.children){
+                    if(node.val == previous.val){
+                        isPrevious = true;
+                    }
+                }
+                if(root.children == null || isPrevious){
+                    output.add(root.val);
+                    stack.pollFirst();
+                    previous = root;
+                    root.children = null;
+                }else{
+                    root = stack.pollFirst();
+                }
+            }
+        }
+        return output;
+    }
+    
     public static void main(String[] args) {
         Stack stack = new Stack();
-        stack.minStackWithExtraSpace();
-        System.out.println("-----------------------------------------");
-        stack.minStackWithNoExtraSpace();
+//        stack.minStackWithNoExtraSpace();
+
+        TNode root = new TNode(1,null);
+        root.children = new ArrayList<>();
+        root.children.add(new TNode(3,null));
+        root.children.add(new TNode(2,null));
+        root.children.add(new TNode(4,null));
+
+        root.children.get(0).children = new ArrayList<>();
+        root.children.get(0).children.add(new TNode(5,null));
+        root.children.get(0).children.add(new TNode(6,null));
+
+       List<Integer> output =  stack.postorder(root);
+        System.out.println(output);
     }
 
+}
+class TNode {
+    public int val;
+    public List<TNode> children;
+
+    public TNode() {}
+
+    public TNode(int _val) {
+        val = _val;
+    }
+
+    public TNode(int _val, List<TNode> _children) {
+        val = _val;
+        children = _children;
+    }
 }

@@ -44,3 +44,8 @@ int findMajorityCandidate(int[] arr) {
 `Space Complexity:` O(1)
 
 
+## Greedy Algorithm
+This algorithm is used to solve optimization problems. For example - Find a way to travel from City A to B provided the cost should be minimum among all available ways of travelling.
+
+**Feasible Solution:** Solution which meets the given constraint of the problem is called as feasible solution.
+**Optimized Solution:** Solution which is optimum among feasible solutions.

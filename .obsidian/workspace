@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Stack/StackNotes.md",
+            "file": "LeetCode/Stack/Easy.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Stack/StackNotes.md",
+                "file": "LeetCode/Stack/Easy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Stack/StackNotes.md",
+                "file": "LeetCode/Stack/Easy.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Stack/StackNotes.md"
+                "file": "LeetCode/Stack/Easy.md"
               }
             }
           },
@@ -134,19 +134,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 199
+    "width": 199,
+    "collapsed": true
   },
   "active": "3193e01e73eeef83",
   "lastOpenFiles": [
-    "LeetCode/Heap.md",
+    "LeetCode/Stack/Medium.md",
+    "LeetCode/Stack/Easy.md",
     "Stack/StackNotes.md",
-    "LeetCode/Stack.md",
-    "BitManipulation/BitManipulationNotes.md",
-    "Trie/Trie Notes.md",
-    "LeetCode/BitManipulation.md",
-    "LeetCode/Binary Search.md",
-    "BitManipulation/Problems.md",
     "Miscellaneous Algorithm.md",
-    "LeetCode/Arrays.md"
+    "Sorting And Searching/SortingNotes.md",
+    "LeetCode/Arrays.md",
+    "Heaps/HeapNotes.md",
+    "LeetCode/Heap.md",
+    "BitManipulation/BitManipulationNotes.md",
+    "Trie/Trie Notes.md"
   ]
 }

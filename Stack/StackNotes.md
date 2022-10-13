@@ -130,6 +130,7 @@ int[] nextSmallerElementRight(int[] arr) {
 `Space Complexity:`  O(n)
 
 ### StockSpan
+
 ```java
 static class StackNode {  
     private int data;  
