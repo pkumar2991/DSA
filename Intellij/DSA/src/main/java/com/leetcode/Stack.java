@@ -502,63 +502,83 @@ public class Stack {
     public List<Integer> postorder(TNode root) {
         Deque<TNode> stack = new ArrayDeque<>();
         List<Integer> output = new ArrayList();
-        if(root == null) return output;
+        if (root == null) return output;
         stack.offerFirst(root);
         TNode previous = null;
-        while(stack.size() > 0){
+        while (stack.size() > 0) {
             TNode current = root;
-            for(int i = root.children.size() - 1; i >= 0; i--){
+            for (int i = root.children.size() - 1; i >= 0; i--) {
                 current = root.children.get(i);
                 stack.offerFirst(current);
             }
             previous = root;
             root = current;
-            while(root.children == null && stack.size() > 0){
+            while (root.children == null && stack.size() > 0) {
                 root = stack.peekFirst();
                 boolean isPrevious = false;
-                if(root.children != null)
-                for(TNode node : root.children){
-                    if(node.val == previous.val){
-                        isPrevious = true;
+                if (root.children != null)
+                    for (TNode node : root.children) {
+                        if (node.val == previous.val) {
+                            isPrevious = true;
+                        }
                     }
-                }
-                if(root.children == null || isPrevious){
+                if (root.children == null || isPrevious) {
                     output.add(root.val);
                     stack.pollFirst();
                     previous = root;
                     root.children = null;
-                }else{
+                } else {
                     root = stack.pollFirst();
                 }
             }
         }
+
         return output;
     }
-    
-    public static void main(String[] args) {
-        Stack stack = new Stack();
-//        stack.minStackWithNoExtraSpace();
 
-        TNode root = new TNode(1,null);
-        root.children = new ArrayList<>();
-        root.children.add(new TNode(3,null));
-        root.children.add(new TNode(2,null));
-        root.children.add(new TNode(4,null));
-
-        root.children.get(0).children = new ArrayList<>();
-        root.children.get(0).children.add(new TNode(5,null));
-        root.children.get(0).children.add(new TNode(6,null));
-
-       List<Integer> output =  stack.postorder(root);
-        System.out.println(output);
+    public int maxDepth(String s) {
+        int depth = 0;
+        int openParentheses = 0;
+        Deque<Character> stack = new ArrayDeque<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.offerFirst(c);
+                openParentheses++;
+            }
+            while (stack.size() > 0 && c != '(' && c != ')') {
+                stack.pollFirst();
+            }
+            depth = Math.max(depth, openParentheses);
+            if (c == ')') {
+                openParentheses--;
+            }
+        }
+        return depth;
     }
 
+    public static void main(String[] args) {
+        Stack stack = new Stack();
+
+//        TNode root = new TNode(1, null);
+//        root.children = new ArrayList<>();
+//        root.children.add(new TNode(3, null));
+//        root.children.add(new TNode(2, null));
+//        root.children.add(new TNode(4, null));
+//
+//        root.children.get(0).children = new ArrayList<>();
+//        root.children.get(0).children.add(new TNode(5, null));
+//        root.children.get(0).children.add(new TNode(6, null));
+//
+//        List<Integer> output = stack.postorder(root);
+    }
 }
+
 class TNode {
     public int val;
     public List<TNode> children;
 
-    public TNode() {}
+    public TNode() {
+    }
 
     public TNode(int _val) {
         val = _val;

@@ -266,3 +266,267 @@ public List<Integer> postorder(Node root) {
     return output;  
 }
 ```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+10. [Baseball Game](https://leetcode.com/problems/baseball-game/description/)
+
+```java
+public int calPoints(String[] operations) {  
+    Deque<Integer> stack = new ArrayDeque<>();  
+    for (String op : operations) {  
+        if (stack.size() > 0 && op.equals("C")) {  
+            stack.removeFirst();  
+        } else if (stack.size() > 0 && op.equals("D")) {  
+            stack.offerFirst(stack.peekFirst() * 2);  
+        } else if (stack.size() > 0 && op.equals("+")) {  
+            int num = stack.pollFirst();  
+            int sum = num + stack.peekFirst();  
+            stack.offerFirst(num);  
+            stack.offerFirst(sum);  
+  
+        } else {  
+            stack.offerFirst(Integer.parseInt(op));  
+        }  
+    }  
+    int sum = 0;  
+    while (stack.size() > 0) {  
+        sum += stack.pollFirst();  
+    }  
+    return sum;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+11. [Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/description/)
+
+```java
+public boolean backspaceCompare(String s, String t) {  
+    Deque<Character> stack = new ArrayDeque<>();  
+    for (char c : s.toCharArray()) {  
+        if (c == '#') {  
+            stack.pollFirst();  
+        } else {  
+            stack.offerFirst(c);  
+        }  
+    }  
+    s = "";  
+    while (stack.size() > 0) {  
+        s += stack.pollFirst();  
+    }  
+    for (char c : t.toCharArray()) {  
+        if (c == '#') {  
+            stack.pollFirst();  
+        } else {  
+            stack.offerFirst(c);  
+        }  
+    }  
+    t = "";  
+    while (stack.size() > 0) {  
+        t += stack.pollFirst();  
+    }  
+    if (s.equals(t)) {  
+        return true;  
+    } else {  
+        return false;  
+    }  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+12. [Increasing Order Search Tree](https://leetcode.com/problems/increasing-order-search-tree/description/)
+
+```java
+public TreeNode increasingBST(TreeNode root) {  
+    if (root == null) {  
+        return null;  
+    }  
+    Deque<TreeNode> stack = new ArrayDeque<>();  
+    TreeNode newTree = null;  
+    TreeNode newTreeHead = null;  
+    while (true) {  
+        while (root != null) {  
+            stack.offerFirst(root);  
+            root = root.left;  
+        }  
+        if (stack.isEmpty()) {  
+            break;  
+        }  
+        root = stack.pollFirst();  
+        if (newTree == null) {  
+            newTree = new TreeNode(root.val, null, null);  
+            newTreeHead = newTree;  
+        } else {  
+            newTree.right = new TreeNode(root.val, null, null);  
+            newTree = newTree.right;  
+        }  
+        root = root.right;  
+    }  
+    return newTreeHead;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+13. [Remove Outermost Parentheses](https://leetcode.com/problems/remove-outermost-parentheses/description/)
+
+```java
+public String removeOuterParentheses(String s) {  
+    if(s.length() == 0){  
+        return s;  
+    }  
+    Deque<Character> stack = new ArrayDeque<>();  
+    StringBuilder sb = new StringBuilder();  
+    for(char c : s.toCharArray()){  
+        if(c == '('){  
+            if(stack.size() > 0){  
+                sb.append(c);  
+            }  
+            stack.offerFirst(c);  
+        }else{  
+            if(stack.size() > 1){  
+                sb.append(c);  
+            }  
+            stack.pollFirst();  
+        }  
+    }  
+    return sb.toString();  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+14. [Remove All Adjacent Duplicates In String](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/)
+
+```java
+public String removeDuplicates(String s) {  
+    Deque<Character> stack = new ArrayDeque<>();  
+    StringBuilder ans = new StringBuilder();  
+    char[] letters = s.toCharArray();  
+    for (int i = letters.length - 1; i >= 0; i--) {  
+        if (stack.size() > 0 && stack.peekFirst() == letters[i]) {  
+            stack.pollFirst();  
+        } else {  
+            stack.offerFirst(letters[i]);  
+        }  
+    }  
+    while (stack.size() > 0) {  
+        ans.append(stack.pollFirst());  
+    }  
+    return ans.toString();  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+15. [Final Prices With a Special Discount in a Shop](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/description/)
+
+```java
+public int[] finalPrices(int[] prices) {  
+    Deque<Integer> stack = new ArrayDeque<>();  
+    int[] output = new int[prices.length];  
+    for(int i = prices.length - 1; i >= 0; i--){  
+        while(stack.size() > 0 && prices[stack.peekFirst()] > prices[i]){  
+            stack.pollFirst();  
+        }  
+        if(stack.size() > 0 && stack.peekFirst() > i)  
+            output[i] = prices[i] - prices[stack.peekFirst()];  
+        if(stack.isEmpty()){  
+            output[i] = prices[i];  
+        }  
+        stack.offerFirst(i);  
+    }  
+    return output;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+16. [Make The String Great](https://leetcode.com/problems/make-the-string-great/description/)
+
+```java
+public String makeGood(String s) {  
+    Deque<Character> stack = new ArrayDeque<>();  
+    StringBuilder sb = new StringBuilder();  
+    char[] chars = s.toCharArray();  
+    for (int i = chars.length - 1; i >= 0; i--) {  
+        if (stack.size() > 0 && Character.isUpperCase(stack.peekFirst()) && Character.isLowerCase(chars[i])  
+                && Character.toLowerCase(stack.peekFirst()) == chars[i]) {  
+            stack.pollFirst();  
+        } else if (stack.size() > 0 && Character.isUpperCase(chars[i]) && Character.isLowerCase(stack.peekFirst())  
+                && Character.toLowerCase(chars[i]) == stack.peekFirst()) {  
+            stack.pollFirst();  
+        } else {  
+            stack.offerFirst(chars[i]);  
+        }  
+    }  
+    while (stack.size() > 0) {  
+        sb.append(stack.pollFirst());  
+    }  
+    return sb.toString();  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+17. [Crawler Log Folder](https://leetcode.com/problems/crawler-log-folder/description/)
+
+```java
+public int minOperations(String[] logs) {  
+    Deque<String> stack = new ArrayDeque<>();  
+    int countToMainFolder = 0;  
+    for (String log : logs) {  
+        if (stack.size() > 0 && log.equals("../")) {  
+            stack.pollFirst();  
+        } else if (!log.equals("./") && !log.equals("../")) {  
+            stack.offerFirst(log);  
+        }  
+    }  
+    while (stack.size() > 0) {  
+        stack.pollFirst();  
+        countToMainFolder++;  
+    }  
+    return countToMainFolder;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+18. [Maximum Nesting Depth of the Parentheses](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/description/)
+
+```java
+public int maxDepth(String s) {  
+    int depth = 0;  
+    int openParentheses = 0;  
+    Deque<Character> stack = new ArrayDeque<>();  
+    for (char c : s.toCharArray()) {  
+        if (c == '(') {  
+            stack.offerFirst(c);  
+            openParentheses++;  
+        }  
+        while (stack.size() > 0 && c != '(' && c != ')') {  
+            stack.pollFirst();  
+        }  
+        depth = Math.max(depth, openParentheses);  
+        if (c == ')') {  
+            openParentheses--;  
+        }  
+    }  
+    return depth;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
