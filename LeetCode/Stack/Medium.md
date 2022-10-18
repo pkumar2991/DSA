@@ -249,3 +249,86 @@ class MinStack {
 `Time Complexity:` O(1) \
 `Space Complexity:` O(n)
 
+6. [Simplify Path](https://leetcode.com/problems/simplify-path/description/)
+
+```java
+public String simplifyPath(String path) {  
+    String[] fnames = path.split("/");  
+    StringBuilder sb = new StringBuilder("");  
+    Deque<String> stack = new ArrayDeque<>();  
+    for(int i = 1; i < fnames.length; i++){  
+        if(fnames[i].equals("..") && stack.size() > 0){  
+            stack.pollFirst();  
+        }else if(!fnames[i].equals(".") && !fnames[i].equals("") && !fnames[i].equals("..")){  
+            stack.offerFirst(fnames[i]);  
+        }  
+    }  
+    if(stack.isEmpty()) {  
+        sb.append("/");  
+        return sb.toString();  
+    }  
+  
+    while(stack.size() > 0){  
+        sb.append("/");  
+        sb.append(stack.pollLast());  
+    }  
+    return sb.toString();  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+7. [Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/)
+
+```java
+public void flatten(TreeNode root) {  
+    if (root == null) return;  
+    Deque<TreeNode> stack = new ArrayDeque<>();  
+    stack.offerFirst(root);  
+    while (stack.size() > 0) {  
+        TreeNode current = stack.pollFirst();  
+        if (current.right != null) {  
+            stack.offerFirst(current.right);  
+        }  
+        if (current.left != null) {  
+            stack.offerFirst(current.left);  
+        }  
+        if (stack.size() > 0) {  
+            current.right = stack.peekFirst();  
+        }  
+        current.left = null;  
+    }  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+8. [Reorder List](https://leetcode.com/problems/reorder-list/description/)
+
+```java
+public void reorderList(ListNode head) {  
+    ListNode current = head;  
+    Deque<ListNode> stack = new ArrayDeque<>();  
+    int len = 0;  
+    while (current != null) {  
+        stack.offerFirst(current);  
+        current = current.next;  
+        len++;  
+    }  
+    current = head;  
+    for (int i = 1; i <= len / 2; i++) {  
+        ListNode temp = current.next;  
+        ListNode endNode = stack.pollFirst();  
+        current.next = endNode;  
+        endNode.next = temp;  
+        current = temp;  
+    }  
+    current.next = null;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+

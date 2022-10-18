@@ -536,29 +536,29 @@ public class Stack {
         return output;
     }
 
-    public int maxDepth(String s) {
-        int depth = 0;
-        int openParentheses = 0;
-        Deque<Character> stack = new ArrayDeque<>();
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                stack.offerFirst(c);
-                openParentheses++;
-            }
-            while (stack.size() > 0 && c != '(' && c != ')') {
-                stack.pollFirst();
-            }
-            depth = Math.max(depth, openParentheses);
-            if (c == ')') {
-                openParentheses--;
-            }
+    public void reorderList(ListNode head) {
+        ListNode current = head;
+        Deque<ListNode> stack = new ArrayDeque<>();
+        int len = 0;
+        while (current != null) {
+            stack.offerFirst(current);
+            current = current.next;
+            len++;
         }
-        return depth;
+        current = head;
+        for (int i = 1; i <= len / 2; i++) {
+            ListNode temp = current.next;
+            ListNode endNode = stack.pollFirst();
+            current.next = endNode;
+            endNode.next = temp;
+            current = temp;
+        }
+        current.next = null;
     }
 
     public static void main(String[] args) {
         Stack stack = new Stack();
-
+        stack.simplifyPath("/home/");
 //        TNode root = new TNode(1, null);
 //        root.children = new ArrayList<>();
 //        root.children.add(new TNode(3, null));

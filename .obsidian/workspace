@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "LeetCode/Stack/Easy.md",
+            "file": "LeetCode/Stack/Medium.md",
             "mode": "source",
             "source": false
           }
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0a7f19cb8a0cfeba",
@@ -78,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "LeetCode/Stack/Easy.md",
+                "file": "LeetCode/Stack/Medium.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "LeetCode/Stack/Easy.md",
+                "file": "LeetCode/Stack/Medium.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -118,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LeetCode/Stack/Easy.md"
+                "file": "LeetCode/Stack/Medium.md"
               }
             }
           },
@@ -140,8 +139,8 @@
   },
   "active": "3193e01e73eeef83",
   "lastOpenFiles": [
-    "LeetCode/Stack/Medium.md",
     "LeetCode/Stack/Easy.md",
+    "LeetCode/Stack/Medium.md",
     "Stack/StackNotes.md",
     "Miscellaneous Algorithm.md",
     "Sorting And Searching/SortingNotes.md",

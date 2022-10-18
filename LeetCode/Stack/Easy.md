@@ -530,3 +530,31 @@ public int maxDepth(String s) {
 `Time Complexity:` O(n) \
 `Space Complexity:` O(n)
 
+19. [Number of Students Unable to Eat Lunch](https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/description/)
+
+```java
+public int countStudents(int[] students, int[] sandwiches) {  
+    Deque<Integer> sandwichesStack = new ArrayDeque<>();  
+    Deque<Integer> studentQueue = new ArrayDeque<>();  
+    for (int i = sandwiches.length - 1; i >= 0; i--) {  
+        sandwichesStack.offerFirst(sandwiches[i]);  
+    }  
+    for (int i = students.length - 1; i >= 0; i--) {  
+        studentQueue.offerLast(students[i]);  
+    }  
+    int counter = sandwichesStack.size() * studentQueue.size();//maximum possible iteration possible   
+while (counter-- > 0) {  
+        if (studentQueue.peekFirst() == sandwichesStack.peekFirst()) {  
+            sandwichesStack.pollFirst();  
+            studentQueue.pollFirst();  
+        } else {  
+            studentQueue.offerLast(studentQueue.pollFirst());  
+        }  
+    }  
+    return studentQueue.size();  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
