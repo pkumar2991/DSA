@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#leetCode",
+                "query": "next Smaller",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -139,9 +139,9 @@
   },
   "active": "3193e01e73eeef83",
   "lastOpenFiles": [
-    "LeetCode/Stack/Easy.md",
-    "LeetCode/Stack/Medium.md",
     "Stack/StackNotes.md",
+    "LeetCode/Stack/Medium.md",
+    "LeetCode/Stack/Easy.md",
     "Miscellaneous Algorithm.md",
     "Sorting And Searching/SortingNotes.md",
     "LeetCode/Arrays.md",

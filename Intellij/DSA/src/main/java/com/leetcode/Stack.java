@@ -56,7 +56,7 @@ public class Stack {
                     stack.pop();
                 }
                 if (stack.isEmpty()) {
-                    list.add(-1);
+                    list.add(arr.length);
                 } else {
                     list.add(stack.peek());
                 }
@@ -536,29 +536,201 @@ public class Stack {
         return output;
     }
 
-    public void reorderList(ListNode head) {
-        ListNode current = head;
-        Deque<ListNode> stack = new ArrayDeque<>();
-        int len = 0;
-        while (current != null) {
+    public int maxWidthRamp(int[] nums) {
+        if (nums.length == 0) return 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (stack.isEmpty() || nums[i] <= nums[stack.peekFirst()]) {
+                stack.offerFirst(i);
+            }
+        }
+        int ans = 0;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && nums[stack.peekFirst()] <= nums[i]) {
+                ans = Math.max(ans, i - stack.pollFirst());
+            }
+        }
+        return ans;
+    }
+
+    public int maxSumMinProduct(int[] nums) {
+        int[] prefix = new int[nums.length + 1];
+        for (int i = 0; i < nums.length; i++) {
+            prefix[i + 1] = prefix[i] + nums[i];
+        }
+        int max = Integer.MIN_VALUE;
+        int[] nextSmallerEltLeft = nextSmallerElementLeft(nums);
+        int[] nextSmallerEltRight = nextSmallerElementRight(nums);
+        for (int i = 0; i < nums.length; i++) {
+            int min = nums[i];
+            int minLeft = nextSmallerEltLeft[i];
+            int minRight = nextSmallerEltRight[i];
+            int sum = prefix[minRight] - prefix[minLeft + 1];
+            max = Math.max(max, min * sum);
+        }
+        return max;
+    }
+
+    public int minimumDeletions(String s) {
+        Deque<Character> st = new ArrayDeque<>();
+        int del = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (!st.isEmpty() && st.peek() == 'b' && s.charAt(i) == 'a') {
+                st.pop();
+                del++;
+            } else {
+                st.push(s.charAt(i));
+            }
+        }
+        return del;
+    }
+
+    public String decodeString(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
+        String prev = "";
+        for (char c : s.toCharArray()) {
+            if (c == ']') {
+                while (stack.size() > 0 && stack.peekFirst() != '[') {
+                    sb.insert(0, stack.pollFirst());
+                }
+                prev = sb.toString();
+                stack.pollFirst();
+                if (stack.size() > 0) {
+                    int count = Character.getNumericValue(stack.pollFirst());
+                    while (count > 1) {
+                        sb.insert(0, prev);
+                        count--;
+                    }
+                }
+                prev = sb.toString();
+            } else {
+                stack.offerFirst(c);
+            }
+
+        }
+        StringBuilder temp = new StringBuilder();
+        while (stack.size() > 0) {
+            temp.insert(0, stack.pollFirst());
+        }
+        sb.append(temp);
+        return sb.toString();
+    }
+
+    public boolean canBeValid(String s, String locked) {
+        if (s.length() % 2 == 1) {
+            return false;
+        }
+        if (s.charAt(s.length() - 1) == '(' && locked.charAt(locked.length() - 1) == '1') {
+            return false;
+        }
+        java.util.Stack<Integer> unlocked = new java.util.Stack<Integer>();
+        java.util.Stack<Integer> left = new java.util.Stack<Integer>();
+        for (int i = 0; i < s.length(); i++) {
+            if (locked.charAt(i) == '0') {
+                unlocked.push(i);
+            } else {
+                if (s.charAt(i) == '(') {
+                    left.push(i);
+                } else {
+                    if (!left.isEmpty()) {
+                        left.pop();
+                    } else {
+                        if (!unlocked.isEmpty()) {
+                            unlocked.pop();
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        while (!unlocked.isEmpty() && !left.isEmpty()) {
+            if (unlocked.get(unlocked.size() - 1) > left.get(left.size() - 1)) {
+                unlocked.pop();
+                left.pop();
+            } else {
+                return false;
+            }
+        }
+        return left.isEmpty();
+    }
+
+    public int sumSubarrayMins(int[] arr) {
+        int sum = 0;
+        int[] left = nextLeftSmallEltIndex(arr);
+        int[] right = nextRightSmallEltIndex(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i] * (left[i] * right[i]);
+        }
+        return sum;
+    }
+
+    class Pair {
+        int num;
+        int count;
+
+        public Pair(int num, int count) {
+            this.num = num;
+            this.count = count;
+        }
+    }
+
+    public int[] nextLeftSmallEltIndex(int[] arr) {
+        Deque<Pair> stack = new ArrayDeque<>();
+        int[] left = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            int count = 1;
+            while (stack.size() > 0 && stack.peekFirst().num > arr[i]) {
+                count += stack.pollFirst().count;
+            }
+            stack.offerFirst(new Pair(arr[i], count));
+            left[i] = count;
+        }
+        return left;
+    }
+
+    public int[] nextRightSmallEltIndex(int[] arr) {
+        Deque<Pair> stack = new ArrayDeque<>();
+        int[] right = new int[arr.length];
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int count = 1;
+            while (stack.size() > 0 && stack.peekFirst().num > arr[i]) {
+                count += stack.pollFirst().count;
+            }
+            stack.offerFirst(new Pair(arr[i], count));
+            right[i] = count;
+        }
+        return right;
+    }
+
+    public TreeNode bstFromPreorder(int[] preorder) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode root = new TreeNode(preorder[0]);
+        stack.offerFirst(root);
+        for (int i = 1; i < preorder.length; i++) {
+            TreeNode current = new TreeNode(preorder[i]);
+            if (stack.peekFirst().val > preorder[i]) {
+                stack.peekFirst().left = current;
+            } else {
+                TreeNode parent = stack.peek();
+                while (!stack.isEmpty() && preorder[i] > stack.peekFirst().val) {
+                    parent = stack.pollFirst();
+                }
+                parent.right = current;
+            }
             stack.offerFirst(current);
-            current = current.next;
-            len++;
         }
-        current = head;
-        for (int i = 1; i <= len / 2; i++) {
-            ListNode temp = current.next;
-            ListNode endNode = stack.pollFirst();
-            current.next = endNode;
-            endNode.next = temp;
-            current = temp;
-        }
-        current.next = null;
+        return root;
     }
 
     public static void main(String[] args) {
         Stack stack = new Stack();
-        stack.simplifyPath("/home/");
+        int[] arr = {3, 1, 2, 4};
+        int[] left = new int[arr.length];
+//        System.out.println(Arrays.toString(stack.nextLeftSmallEltIndex(arr)));
+        System.out.println(stack.sumSubarrayMins(arr));
 //        TNode root = new TNode(1, null);
 //        root.children = new ArrayList<>();
 //        root.children.add(new TNode(3, null));

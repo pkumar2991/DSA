@@ -178,71 +178,42 @@ public class NestedIterator implements Iterator<Integer> {
 class MinStack {
 
     private Node head;
-
     public MinStack() {
-
     }
 
     public void push(int val) {
-
         if (head == null)
-
             head = new Node(val, val, null);
-
         else
-
             head = new Node(val, Math.min(val, head.min), head);
-
     }
 
     public void pop() {
-
         if(head != null){
-
             head = head.next;
-
         }
-
     }
 
     public int top() {
-
         if(head != null){
-
             return head.val;
-
         }
-
        return -1;
-
     }
-
     public int getMin() {
-
         return head.min;
-
     }
 
     private class Node {
-
         int val;
-
         int min;
-
         Node next;
-
         private Node(int val, int min, Node next) {
-
             this.val = val;
-
             this.min = min;
-
             this.next = next;
-
         }
-
     }
-
 }
 ```
 
@@ -326,6 +297,70 @@ public void reorderList(ListNode head) {
         current = temp;  
     }  
     current.next = null;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+9. [Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
+
+```java
+public int evalRPN(String[] tokens) {  
+    Deque<Integer> stack = new ArrayDeque<>();  
+    int op1 = 0;  
+    int op2 = 0;  
+    for (String str : tokens) {  
+        if (str.equals("*")) {  
+            op1 = stack.pollFirst();  
+            op2 = stack.pollFirst();  
+            stack.offerFirst(op1 * op2);  
+        } else if (str.equals("/")) {  
+            op1 = stack.pollFirst();  
+            op2 = stack.pollFirst();  
+            stack.offerFirst(op2 / op1);  
+        } else if (str.equals("+")) {  
+            op1 = stack.pollFirst();  
+            op2 = stack.pollFirst();  
+            stack.offerFirst(op1 + op2);  
+        } else if (str.equals("-")) {  
+            op1 = stack.pollFirst();  
+            op2 = stack.pollFirst();  
+            stack.offerFirst(op2 - op1);  
+        } else {  
+            stack.offerFirst(Integer.parseInt(str));  
+        }  
+    }  
+    if (stack.size() > 0) return stack.pollFirst();  
+    else  
+        return 0;  
+}
+```
+
+`Time Complexity:` O(n) \
+`Space Complexity:` O(n)
+
+10. [Construct Binary Search Tree from Preorder Traversal](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/)
+
+```java
+public TreeNode bstFromPreorder(int[] preorder) {  
+    Deque<TreeNode> stack = new ArrayDeque<>();  
+    TreeNode root = new TreeNode(preorder[0]);  
+    stack.offerFirst(root);  
+    for (int i = 1; i < preorder.length; i++) {  
+        TreeNode current = new TreeNode(preorder[i]);  
+        if (stack.peekFirst().val > preorder[i]) {  
+            stack.peekFirst().left = current;  
+        } else {  
+            TreeNode parent = stack.peek();  
+            while (!stack.isEmpty() && preorder[i] > stack.peekFirst().val) {  
+                parent = stack.pollFirst();  
+            }  
+            parent.right = current;  
+        }  
+        stack.offerFirst(current);  
+    }  
+    return root;  
 }
 ```
 
