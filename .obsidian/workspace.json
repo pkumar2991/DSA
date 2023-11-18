@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "10a3c792a7e0b878",
+    "type": "split",
+    "children": [
+      {
+        "id": "2d578187599745d8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3eedaf1b55a4f7b2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Heaps/Heap Questions.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "484a5ab88553b0cd",
+    "type": "split",
+    "children": [
+      {
+        "id": "26ccba6cd90c8edb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "903bea3ab531a9d1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "94eedb4d33afd883",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "next Smaller",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "283ddb942cf7db9e",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "3ae5aefe5b6c634d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0a7f19cb8a0cfeba",
+    "type": "split",
+    "children": [
+      {
+        "id": "cb18e0585adfa794",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "02efe3b6f430d190",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Heaps/Heap Questions.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "4e1840981870051e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Heaps/Heap Questions.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "e6f4c97b0da6166c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4a4eaf7416eaa7be",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Heaps/Heap Questions.md"
+              }
+            }
+          },
+          {
+            "id": "80d15392373ccc5d",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 199,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "3eedaf1b55a4f7b2",
+  "lastOpenFiles": [
+    "Heaps/HeapNotes.md",
+    "Heaps/Heap Questions.md",
+    "LeetCode/Stack/Medium.md",
+    "Stack/StackNotes.md",
+    "LeetCode/Stack/Easy.md",
+    "Miscellaneous Algorithm.md",
+    "Sorting And Searching/SortingNotes.md",
+    "LeetCode/Arrays.md",
+    "LeetCode/Heap.md",
+    "BitManipulation/BitManipulationNotes.md",
+    "Trie/Trie Notes.md"
+  ]
+}
