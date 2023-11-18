@@ -8,13 +8,25 @@
         "type": "tabs",
         "children": [
           {
-            "id": "3eedaf1b55a4f7b2",
+            "id": "ab6619f578fee632",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Heaps/Heap Questions.md",
+                "file": "Heaps/Problems.md",
                 "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fe5492515a61936b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tree/Problems.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -93,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Heaps/Heap Questions.md",
+                "file": "Heaps/Problems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Heaps/Heap Questions.md",
+                "file": "Heaps/Problems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -133,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Heaps/Heap Questions.md"
+                "file": "Heaps/Problems.md"
               }
             }
           },
@@ -164,10 +176,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3eedaf1b55a4f7b2",
+  "active": "ab6619f578fee632",
   "lastOpenFiles": [
+    "Tree/Problems.md",
+    "Heaps/Problems.md",
     "Heaps/HeapNotes.md",
-    "Heaps/Heap Questions.md",
     "LeetCode/Stack/Medium.md",
     "Stack/StackNotes.md",
     "LeetCode/Stack/Easy.md",
