@@ -65,3 +65,50 @@ PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> b - a);  // MAX HEAP
 ```
 
 `Output:` 6
+
+## K Closest Numbers
+Given a sorted array arr[] and a value X, find the k closest elements to X in arr[].
+
+Closest : Numbers having less diff from the given number would be the closest number.
+For example: 3,4,5,6 . Absolute diff would be (5-3,5-4,5-6) = 2,1,1. So, 4 and 6 are closest number to 5.
+
+`Input:` K = 4, X = 35  arr[] = {12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56}
+
+```java
+private static class Pair implements Comparable{  
+    int key;  
+    int value;  
+  
+    public Pair(int key, int value) {  
+        this.key = key;  
+        this.value = value;  
+    }  
+  
+    @Override  
+    public int compareTo(Object o) {  
+        if (this == o) return -1;  
+        Pair pair = (Pair) o;  
+        return this.key - pair.key;  
+    }  
+}
+
+public static void main(String[] args) {  
+   int arr[]={12, 16, 22, 30, 35, 39, 42,45, 48, 50, 53, 55, 56};  
+   int k = 4;  
+   int x = 35;  
+   int len = arr.length;  
+   PriorityQueue<Pair> pq = new PriorityQueue<>();  
+   ArrayList<Pair> output = new ArrayList<>();  
+    for (int i = 0; i < len; i++) {  
+        pq.add(new Pair(Math.abs(arr[i]-x),arr[i]));  
+    }  
+    pq.remove(); // remove the first element  
+    while (pq.size() > 0 && k > 0){  
+        k--;  
+        output.add(pq.remove());  
+    }  
+    System.out.println(output.stream().map(pair->pair.value).sorted().toList());  
+}
+```
+
+`Output:`[30, 39, 42, 45]
