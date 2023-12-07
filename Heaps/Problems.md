@@ -1,5 +1,6 @@
 #Heaps 
 ## Sort a K Sorted Array | Sort a nearly sorted array
+
 Given an array of **N** elements, where each element is at most K away from its target position, devise an algorithm that sorts in O(N log K) time
 `Code:`
 ```java
@@ -23,6 +24,7 @@ PriorityQueue<Integer> pq = new PriorityQueue<>();
 `Output:` [2, 3, 5, 6, 8, 10]
 
 ## Kth Smallest element
+
 Given an array of N elements, find the kth smallest element from the array.
 
 `Code:`
@@ -45,6 +47,7 @@ PriorityQueue<Integer> pq = new PriorityQueue<>();  // MIN HEAP
 `Output:` 5
 
 ## Kth Largest element
+
 Given an array of N elements, find the kth largest element from the array.
 
 `Code:`
@@ -67,6 +70,7 @@ PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> b - a);  // MAX HEAP
 `Output:` 6
 
 ## K Closest Numbers
+
 Given a sorted array arr[] and a value X, find the k closest elements to X in arr[].
 
 Closest : Numbers having less diff from the given number would be the closest number.
@@ -112,3 +116,32 @@ public static void main(String[] args) {
 ```
 
 `Output:`[30, 39, 42, 45]
+
+## TOP K frequent Numbers
+
+Given an array of ****N**** numbers and a positive integer ****K****. The problem is to find ****K**** numbers with the most occurrences, i.e., the top ****K**** numbers having the maximum frequency. If two numbers have the same frequency then the number with a larger value should be given preference. The numbers should be displayed in decreasing order of their frequencies. It is assumed that the array consists of at least K numbers.
+
+`Input:`  arr[]={7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9}, K= 4
+
+```java
+int arr[]={7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};  
+int k = 4;  
+int len = arr.length;  
+  
+Map<Integer,Integer> map = new HashMap<>();  
+for(int num : arr){  
+    map.put(num,map.getOrDefault(num,1)+1);  
+}  
+Comparator<Map.Entry<Integer,Integer>> comparator = (a,b) -> {  
+    return b.getValue().equals(a.getValue()) ? b.getKey().compareTo(a.getKey()) : Integer.compare(b.getValue(),a.getValue());  
+};  
+  
+PriorityQueue<Map.Entry<Integer,Integer>> pq = new PriorityQueue<>(2,comparator);  
+map.entrySet().forEach(entry -> pq.add(entry));  
+while (k > 0){  
+    k--;  
+    System.out.print(pq.poll().getKey()+" ");  
+}
+```
+
+`Output:` 5 11 7 10
