@@ -130,7 +130,7 @@ int len = arr.length;
   
 Map<Integer,Integer> map = new HashMap<>();  
 for(int num : arr){  
-    map.put(num,map.getOrDefault(num,1)+1);  
+    map.put(num,map.getOrDefault(num,0)+1);  
 }  
 Comparator<Map.Entry<Integer,Integer>> comparator = (a,b) -> {  
     return b.getValue().equals(a.getValue()) ? b.getKey().compareTo(a.getKey()) : Integer.compare(b.getValue(),a.getValue());  
@@ -145,3 +145,33 @@ while (k > 0){
 ```
 
 `Output:` 5 11 7 10
+
+## Frequency Sort
+
+Print the elements of an array in the decreasing frequency if 2 numbers have the same frequency then print the one which came first.
+
+`Input:` arr[] = {2, 5, 2, 8, 5, 6, 8, 8}
+
+```java
+int arr[]={2, 5, 2, 8, 5, 6, 8, 8};  
+int len = arr.length;  
+  
+Map<Integer,Integer> map = new HashMap<>();  
+for(int num : arr){  
+    map.put(num,map.getOrDefault(num,0)+1);  
+}  
+Comparator<Map.Entry<Integer,Integer>> comparator = (a,b) -> {  
+    return b.getValue().compareTo(a.getValue()) == 0 ? a.getKey().compareTo(b.getKey()) : b.getValue().compareTo(a.getValue());  
+};  
+  
+PriorityQueue<Map.Entry<Integer,Integer>> pq = new PriorityQueue<>(2,comparator);  
+map.entrySet().forEach(entry -> pq.add(entry));  
+while (pq.size() > 0){  
+    Map.Entry<Integer,Integer> entry = pq.poll();  
+    for(int i = 0; i < entry.getValue(); i++){  
+        System.out.print(entry.getKey() + " ");  
+    }  
+}
+```
+
+`Output:` 8 8 8 2 2 5 5 6
