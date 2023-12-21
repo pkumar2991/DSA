@@ -175,3 +175,71 @@ while (pq.size() > 0){
 ```
 
 `Output:` 8 8 8 2 2 5 5 6
+
+## K Closet Points to Origin
+Given a list of points on the 2-D plane and an integer K. The task is to find K closest points to the origin and print them.  
+**Note**: The distance between two points on a plane is the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance).
+
+Create a Pair class to hold the X and Y axis details
+
+```java
+private static class Pair{  
+    int x;  
+    int y;  
+  
+    public Pair(int x, int y) {  
+        this.x = x;  
+        this.y = y;  
+    }  
+  
+    public int getX() {  
+        return x;  
+    }  
+  
+    public void setX(int x) {  
+        this.x = x;  
+    }  
+  
+    public int getY() {  
+        return y;  
+    }  
+  
+    public void setY(int y) {  
+        this.y = y;  
+    }  
+  
+    @Override  
+    public String toString() {  
+        return "Pair{" +  
+                "x=" + x +  
+                ", y=" + y +  
+                '}';  
+    }  
+}
+```
+
+`Input:` {{3, 3}, {5, -1}, {-2, 4}};
+
+```java
+int arr[][] = {{3, 3}, {5, -1}, {-2, 4}};  
+int k = 2;  
+int len = arr.length;  
+/**  
+ * Formula used to calculate distance between two points * sqrt (x2-x1)^2 + (y2-y1)2 */Map<Integer,Pair> map = new HashMap<>();  
+for (int i = 0; i < len; i++) {  
+    int sqrX = (int)Math.pow(arr[i][0],2);  
+    int sqrY = (int)Math.pow(arr[i][1],2);  
+    map.put(sqrX+sqrY,new Pair(arr[i][0],arr[i][1]));  
+}  
+  
+Comparator<Map.Entry<Integer,Pair>> comparator = Comparator.comparing(Map.Entry::getKey);  
+  
+PriorityQueue<Map.Entry<Integer,Pair>> pq = new PriorityQueue<>(comparator);  
+map.entrySet().forEach(entry -> pq.add(entry));  
+while (pq.size() > 0 && k > 0){  
+    System.out.println(pq.poll().getValue());  
+    k--;  
+}
+```
+
+`Output:` Pair{x=3, y=3} Pair{x=-2, y=4}
