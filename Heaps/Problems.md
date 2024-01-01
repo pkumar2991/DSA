@@ -243,3 +243,27 @@ while (pq.size() > 0 && k > 0){
 ```
 
 `Output:` Pair{x=3, y=3} Pair{x=-2, y=4}
+
+## Minimum Cost of ropes
+There are given **N** ropes of different lengths, we need to connect these ropes into one rope. The cost to connect two ropes is equal to sum of their lengths.  
+The task is to connect the ropes with minimum cost. Given **N** size array **arr[]** contains the lengths of the ropes.
+
+`Input:` {4, 3, 2, 6}
+
+```java
+int arr[]={4,2, 7, 6, 9};  
+PriorityQueue<Integer> pq = new PriorityQueue<>();  
+for (int num :  
+        arr) {  
+    pq.add(num);  
+}  
+int cost = 0;  
+while (pq.size() >= 2){  
+    int sum = pq.remove() + pq.remove();  
+    cost += sum;  
+    pq.add(sum);  
+}  
+System.out.println(cost);
+```
+
+`Output:` 29
