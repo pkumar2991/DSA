@@ -267,3 +267,43 @@ System.out.println(cost);
 ```
 
 `Output:` 29
+
+## Sum of elements between k1th smallest and k2th smallest
+Given an array of n elements, find the sum of elements greater than k1th smallest element and less than k2th smallest element of the array
+
+`Input:` {1,3,12,5,15,11}
+
+```java
+private static int kthSmallest(int[] arr, int k){  
+    PriorityQueue<Integer> pq = new PriorityQueue<>();  
+    for (int num :  
+            arr) {  
+        pq.offer(num);  
+    }  
+    while (k > 1){  
+        pq.poll();  
+        k--;  
+    }  
+    return pq.poll();  
+}
+
+
+public static void main(String[] args) {  
+        int arr[] = {1,3,12,5,15,11};  
+        int k1 = 2; // kth smallest  
+        int k2 = 6; // kth smallest  
+        int res1,res2,sum=0;  
+    // Find sum of elements greater than k1th and less than k2th  
+    res1 = kthSmallest(arr,k1);  
+    // Find k1th smallest element  
+    res2 = kthSmallest(arr,k2);  
+    for (int i = 0; i < arr.length; i++) {  
+        if(arr[i] > res1 && arr[i]<res2){  
+            sum += arr[i];  
+        }  
+    }  
+    System.out.println(sum);  
+}
+```
+
+`Output:` 28
