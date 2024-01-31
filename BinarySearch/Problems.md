@@ -139,3 +139,52 @@ private static int findNumRotation(int[] arr,int low,int high) {
 `Input:` 1,2,3,4,5,6,7,8,9,10 `Output:` 0 (index of the minimum element) - CASE 1
 `Input:` 6,7,8,9,10,1,2,3,4,5 `Output:` 0 (index of the minimum element) - CASE 2
 `Input:` 9,10,1,2,3,4,5,6,7,8 `Output:` 2 (index of the minimum element) - CASE 3
+
+## Find an element in a rotated sorted array
+Use the previous method to find out the index of the min element in the rotated sorted array.
+
+```java
+public static void main(String[] args) {  
+    int arr[] = {10,11,12,1, 2, 3, 4, 5, 6,7,8,9};  
+    int num = findNumRotation(arr,0,arr.length-1);  
+    int res = findAnEltInRotatedArray(arr,0,num-1,11); // Search in unsorted array  
+    int res1 = findAnEltInRotatedArray(arr,num+1,arr.length-1,11);//Search in sorted array  
+    if((res > 0 || res1 > 0)){  
+        System.out.println("Number found");  
+    }else {  
+        System.out.println("Number not found");  
+    }  
+}
+
+private static int findAnEltInRotatedArray(int arr[],int start, int end,int num){  
+    if(start > end) return -1;  
+  
+    int mid = (start + (end - start)/2);  
+    if(arr[mid] ==  num)  
+        return arr[mid];  
+    if(arr[mid] > num)  
+        return findAnEltInRotatedArray(arr,start,mid-1,num);  
+    else        return findAnEltInRotatedArray(arr,mid+1,end,num);  
+}
+```
+
+`Output:` Number found.
+
+## Find a number in a nearly sorted array
+Given an array which is sorted, but after sorting some elements are moved to either of the adjacent positions, i.e., arr[i] may be present at arr[i+1] or arr[i-1]. Write an efficient function to search an element in this array. Basically the element arr[i] can only be swapped with either arr[i+1] or arr[i-1].
+
+```java
+private static int findEltInNearlySortedArray(int arr[], int start, int end, int num){  
+    if(start > end) return -1;  
+    int mid = start + (end - start)/2;  
+  
+    if(arr[mid] == num) return  num;  
+    if(mid-1 >= start && arr[mid-1] == num) return num;  
+    if(mid+1 <= end && arr[mid+1] == num) return num;  
+  
+    if(arr[mid] > num)  
+        return findEltInNearlySortedArray(arr,start,mid-2,num);  
+    else        return findEltInNearlySortedArray(arr,mid+2,end,num);  
+}
+```
+
