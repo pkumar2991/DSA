@@ -188,3 +188,46 @@ private static int findEltInNearlySortedArray(int arr[], int start, int end, int
 }
 ```
 
+## Find floor of an element in a sorted array
+
+```java
+private static int floorOfElt(int arr[],int start,int end, int num,int res){  
+    if(res < num && start > end) return res;  
+    if(start > end) return -1;  
+    int mid = start + (end - start)/2;  
+    if(arr[mid] == num) return num;  
+  
+    if(arr[mid] > num) {  
+        return floorOfElt(arr,start,mid -1,num,res);  
+    }  
+    else {  
+        res = arr[mid];  
+        return floorOfElt(arr,mid+1,end,num,res);  
+    }  
+}
+```
+
+`Input`: {1,2,3,4,8,11,15,17}  , 14
+`Output`: 11
+
+## Find ceil of an element in a sorted array
+
+```java
+private static int ceilOfElt(int arr[],int start,int end, int num,int res){  
+    if ( res > num && start > end) return res;  
+    if(start > end) return -1;  
+    int mid = start + (end - start)/2;  
+    if(arr[mid] == num) return num;  
+  
+    if(arr[mid] < num) {  
+        return ceilOfElt(arr,mid+1,end,num,res);  
+    }  
+    else {  
+        res = arr[mid];  
+        return ceilOfElt(arr,start,mid -1,num,res);  
+    }  
+}
+```
+
+`Input`: {1,2,3,4,8,11,15,17}  , 14
+`Output`: 15
