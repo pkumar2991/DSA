@@ -231,3 +231,25 @@ private static int ceilOfElt(int arr[],int start,int end, int num,int res){
 
 `Input`: {1,2,3,4,8,11,15,17}  , 14
 `Output`: 15
+
+## Find next char in a sorted array of characters
+If next char is not available, return '#'.
+
+```java
+private static char findNextChar(char carr[],int start,int end, char key, char res){  
+    if(res > key && start > end) return res;  
+    if(start > end) return '#';  
+    int mid = start + (end - start)/2;  
+  
+    if(carr[mid] <= key){  
+        return findNextChar(carr,mid + 1,end,key,res);  
+    }  
+    else{  
+        res = carr[mid];  
+        return findNextChar(carr,start,mid -1,key,res);  
+    }  
+}
+```
+
+`Input:` {'a','d','e','f','j'} 'f'
+`Output:` 'j'
