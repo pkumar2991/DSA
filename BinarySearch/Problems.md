@@ -253,3 +253,51 @@ private static char findNextChar(char carr[],int start,int end, char key, char r
 
 `Input:` {'a','d','e','f','j'} 'f'
 `Output:` 'j'
+
+## Find index of an element in a infinite sorted array
+find the block in the infinite array in which your the key element exist.
+
+```java
+private static int findIndexOfElt(int[] arr, int key){  
+    if(arr.length == 1 && key != arr[0]) return -1;  
+    int start = 0;  
+    int end = 1;  
+    while (end < arr.length && arr[end] < key){  
+        start = end;  
+        end = end * 2;  
+    }  
+    // Found the section of array in which key exist  
+    while (start <= end){  
+        int mid = start + (end - start)/2;  
+        if(mid > arr.length-1) return -1;  
+        if(arr[mid] == key) return mid;  
+        if(arr[mid] > key){  
+            end = mid-1;  
+        }else {  
+            start = mid + 1;  
+        }  
+    }  
+    return -1;  
+}
+```
+
+
+## Find index of first occurrence of 1 in an infinite sorted array
+
+- Find the block wherein 1 exist from an infinite array
+- Find the first occurrence of 1
+
+```java
+private static int findFirstOccurrenceInfiniteSortedArray(int[] arr, int key){  
+    if(arr.length == 1 && key != arr[0]) return -1;  
+    int start = 0;  
+    int end = 1;  
+    while (end < arr.length && arr[end] < key){  
+        start = end;  
+        end = end * 2;  
+    }  
+    return findFirstOccurrenceOfNumber(arr,start,end,1,-1);  
+  
+}
+```
+
