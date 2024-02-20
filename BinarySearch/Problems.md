@@ -301,3 +301,31 @@ private static int findFirstOccurrenceInfiniteSortedArray(int[] arr, int key){
 }
 ```
 
+## Find Min difference element in a sorted array
+`Input:` arr = {1,2,3,4,8,11,15,17}, key = 5
+If key is present, return the key as the min diff would be zero when key is present in the array, else find the neighbouring of the key element and return the neighbour which results abs min diff.
+
+```java
+private static int findMinDiffEltSortedArray(int[] arr, int key){  
+  
+    int start = 0;  
+    int end = arr.length-1;  
+  
+    while (start <= end){  
+        int mid = start + (end - start) / 2;  
+        if(arr[mid] == key) return key;  
+        if(arr[mid] < key){  
+            start = mid + 1;  
+        }else {  
+            end = mid - 1;  
+        }  
+    }  
+    if(Math.abs(arr[start] - key) < Math.abs(arr[end] - key)){  
+        return arr[start];  
+    }else{  
+        return arr[end];  
+    }  
+}
+```
+
+`Output:` 4 
