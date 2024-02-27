@@ -3,7 +3,7 @@
 `Input:` {1,3,5,10,11,12}, 12
 
 ```java
-private static int findNumber(int[] arr, int start, int end, int key){  
+private static int findEltIndexInSortedArr(int[] arr, int start, int end, int key){  
     if(start > end) return -1;  
     //int mid =  (start+end/2);  
     int mid =  (start+(end-start)/2); // To avoid int overflow 
@@ -24,7 +24,7 @@ private static int findNumber(int[] arr, int start, int end, int key){
 `Input:` {12,11,9,8,4,3}, 8
 
 ```java
-private static int findNumber(int[] arr, int start, int end, int key){  
+private static int findEltIndexInReverseSortedArr(int[] arr, int start, int end, int key){  
     if(start > end) return -1;  
     //int mid =  (start+end/2);  
     int mid =  (start+(end-start)/2); // To avoid int overflow 
@@ -329,3 +329,62 @@ private static int findMinDiffEltSortedArray(int[] arr, int key){
 ```
 
 `Output:` 4 
+
+## Find index of peak element in unsorted array || Find maximum in Bitonic Array (Monotonously increasing and later monotonously decreasing)
+
+`Definition:`A peak element is an element that is greater than its neighbors.
+
+`Input:` arr[] = {1,2,1,3,5,6,4};
+
+```java
+private static int findPeakElement(int[] arr) {  
+    int start = 0;  
+    int end = arr.length - 1;  
+    if (arr.length == 1) {  
+        return 0;  
+    }  
+  
+    while (start <= end) {  
+        int mid = start + (end - start) / 2;  
+        if (mid > 0 && mid < arr.length - 1) {  
+            if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1]) {  
+               return mid;  
+            }  
+            if(arr[mid+1] > arr[mid -1]){  
+                start = mid + 1;  
+            }else{  
+                end = mid - 1;  
+            }  
+        } else if (mid == 0) {  
+            if (arr[mid] > arr[mid + 1]) {  
+               return 0;  
+            } else {  
+                return  1;  
+            }  
+        } else if (mid == arr.length - 1) {  
+            if (arr[mid] > arr[mid - 1]) {  
+                return mid;  
+            } else {  
+                return mid - 1;  
+            }  
+        }  
+    }  
+    return -1;  
+}
+```
+
+`Output:` 5
+
+## Find an index of an element in Bitonic array
+`Input:` arr[] = {2,4,8,12,10,6,3} , 12
+
+```java
+private static int findEltIndexInBitonicArr(int arr[],int key){  
+    int peakEltIndex = findPeakElement(arr);  
+    int x = findEltIndexInSortedArr(arr,key,0,peakEltIndex-1);  
+    int y = findEltIndexInReverseSortedArr(arr,key,peakEltIndex,arr.length-1);  
+    return  (int)Math.max(x,y);  
+}
+```
+
+`Output:` 3
