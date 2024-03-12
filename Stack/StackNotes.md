@@ -2,7 +2,7 @@
 
 ### Identification
 - Array should be there as input
-- Brutefore solution will have O(n2) and second iteration would be the function of first
+- Bruteforce solution will have O(n2) and second iteration would be the function of first
 
 ```java
 for(int i = 0; i < n; i++)
@@ -38,8 +38,36 @@ int[] nextGreaterElementRight(int[] arr) {
 }
 ```
 
-`Time Complexity:` O(n)\
-`Space Complexity:`  O(n)
+Another way:  
+`Input:` arr[] = {3,9,2,11}
+`Output`: [9, 11, 11, -1]
+
+```java
+private static int[] findNextGreaterElt(int[] arr) {  
+    Deque<Integer> dq = new ArrayDeque<>();  
+    List<Integer> output = new ArrayList<>();  
+  
+    for (int i = arr.length - 1; i >= 0 ; i--) {  
+        while (dq.size() > 0 && dq.peekFirst() <= arr[i]){  
+            dq.pollFirst();  
+        }  
+  
+        if(dq.size() > 0 && dq.peekFirst() > arr[i]){  
+            output.add(dq.peekFirst());  
+            dq.offerFirst(arr[i]);  
+        }  
+        if (dq.isEmpty()) {  
+            output.add(-1);  
+            dq.offerFirst(arr[i]);  
+        }  
+    }  
+    Collections.reverse(output);  
+    return output.stream().mapToInt(x->x).toArray();  
+}
+```
+
+`Time Complexity:` O(n)  
+`Space Complexity:`  O(n)  
 
 ### Nearest Greater To Left
 ```java
