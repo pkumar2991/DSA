@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stack/StackNotes.md",
+                "file": "Sorting And Searching/SortingNotes.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Stack/StackNotes.md",
+                "file": "Sorting And Searching/SortingNotes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Stack/StackNotes.md",
+                "file": "Sorting And Searching/SortingNotes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Stack/StackNotes.md"
+                "file": "Sorting And Searching/SortingNotes.md"
               }
             }
           },
@@ -166,8 +166,9 @@
   },
   "active": "367ba753e1147649",
   "lastOpenFiles": [
-    "Heaps/Problems.md",
     "BinarySearch/Problems.md",
+    "Heaps/Problems.md",
+    "Stack/StackNotes.md",
     "Sorting And Searching/SortingNotes.md",
     "BinarySearch",
     "Heaps/HeapNotes.md",
@@ -176,7 +177,6 @@
     "Tree/Problems.md",
     "Design Patterns",
     "LeetCode/Stack/Medium.md",
-    "Stack/StackNotes.md",
     "LeetCode/Stack/Easy.md",
     "Miscellaneous Algorithm.md",
     "LeetCode/Arrays.md",

@@ -388,3 +388,39 @@ private static int findEltIndexInBitonicArr(int arr[],int key){
 ```
 
 `Output:` 3
+
+## Find if an element exist in a 2D array (sorted by column & row)
+
+`Input:`
+int arr[][] = {  
+        {10, 20, 30, 40},  
+        {15, 25, 35, 45},  
+        {19, 29, 39, 49},  
+        {23, 33, 43, 53}  
+};
+Key 35
+
+```java
+private static boolean searchInSorted2DArray(int[][] arr, int key) {  
+    int i = 0;  
+    int j = arr[0].length - 1;  
+  
+    while (i <= arr.length - 1 && j >= 0) {  
+        if (arr[i][j] == key) {  
+            System.out.println("i:" + i + ",j:" + j);  
+            return true;        }  
+        if (arr[i][j] > key) {  
+            j--;  
+        } else {  
+            i++;  
+        }  
+    }  
+    return false;  
+}
+```
+
+`Output`:
+i:1,j:2
+true
+
+## Allocate Minimum No of Pages

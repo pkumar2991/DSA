@@ -36,38 +36,7 @@ int[] nextGreaterElementRight(int[] arr) {
     Collections.reverse(output);  
     return output.stream().mapToInt(x->x).toArray();  
 }
-```
-
-Another way:  
-`Input:` arr[] = {3,9,2,11}
-`Output`: [9, 11, 11, -1]
-
-```java
-private static int[] findNextGreaterElt(int[] arr) {  
-    Deque<Integer> dq = new ArrayDeque<>();  
-    List<Integer> output = new ArrayList<>();  
-  
-    for (int i = arr.length - 1; i >= 0 ; i--) {  
-        while (dq.size() > 0 && dq.peekFirst() <= arr[i]){  
-            dq.pollFirst();  
-        }  
-  
-        if(dq.size() > 0 && dq.peekFirst() > arr[i]){  
-            output.add(dq.peekFirst());  
-            dq.offerFirst(arr[i]);  
-        }  
-        if (dq.isEmpty()) {  
-            output.add(-1);  
-            dq.offerFirst(arr[i]);  
-        }  
-    }  
-    Collections.reverse(output);  
-    return output.stream().mapToInt(x->x).toArray();  
-}
-```
-
-`Time Complexity:` O(n)  
-`Space Complexity:`  O(n)  
+``` 
 
 ### Nearest Greater To Left
 ```java
