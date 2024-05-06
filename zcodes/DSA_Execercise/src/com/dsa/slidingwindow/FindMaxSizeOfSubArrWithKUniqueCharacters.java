@@ -3,7 +3,7 @@ package com.dsa.slidingwindow;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FindMaxSizeOfSubArrWithUniqueCharacters {
+public class FindMaxSizeOfSubArrWithKUniqueCharacters {
 
 	// Find the max size of sub-array with K unique characters which may repeat
 
@@ -30,7 +30,6 @@ public class FindMaxSizeOfSubArrWithUniqueCharacters {
 				char ch1 = input.charAt(i);
 				map.computeIfPresent(ch1, (key,val)->{
 					val = val - 1;
-					map.put(ch1, map.get(ch1) - 1);
 					if(val == 0) {
 						map.remove(ch1);
 					}
