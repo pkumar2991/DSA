@@ -119,6 +119,8 @@ An index of a minimum element in the array defines the number of rotations in an
 2. When the value at the mid index is greater than the rightmost value, the minimum element would be  present on the right half.
 3. When the value at mid index is lesser than the rightmost value, the minimum element would be present on the left half.
 
+Index is nothing but number of rotations.
+
 ```java
 private static int findNumRotation(int[] arr,int low,int high) {  
   
@@ -136,9 +138,9 @@ private static int findNumRotation(int[] arr,int low,int high) {
 }
 ```
 
-`Input:` 1,2,3,4,5,6,7,8,9,10 `Output:` 0 (index of the minimum element) - CASE 1
-`Input:` 6,7,8,9,10,1,2,3,4,5 `Output:` 0 (index of the minimum element) - CASE 2
-`Input:` 9,10,1,2,3,4,5,6,7,8 `Output:` 2 (index of the minimum element) - CASE 3
+`Input:` 1,2,3,4,5,6,7,8,9,10 `Output:` 0 (index of the minimum element) - CASE 1  
+`Input:` 6,7,8,9,10,1,2,3,4,5 `Output:` 0 (index of the minimum element) - CASE 2  
+`Input:` 9,10,1,2,3,4,5,6,7,8 `Output:` 2 (index of the minimum element) - CASE 3  
 
 ## Find an element in a rotated sorted array
 Use the previous method to find out the index of the min element in the rotated sorted array.
