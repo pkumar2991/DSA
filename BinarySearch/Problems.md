@@ -109,7 +109,7 @@ else
 
 `Output:` 4
 
-## Find minimum element in a sorted array / Find number of rotation in sorted array
+## Find minimum element in a sorted and rotated array / Find number of rotation in sorted array
 
 ### Thought process:
 An index of a minimum element in the array defines the number of rotations in an array.
