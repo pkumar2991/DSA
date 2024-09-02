@@ -113,6 +113,13 @@ else
 
 ### Thought process:
 An index of a minimum element in the array defines the number of rotations in an array.
+If min is in not at end or start, then min number will be always less than both elements of right and left. 
+3,4,5,1,2 - Here 1 is min element as it is smaller than left and right element.
+One side of the mid element would be sorted and another side would be unsorted. It is fact that min element would be always
+in the unsorted part.
+To prevent the outofbound exception while calculating next and last, we need to take modulus.
+Next = [mid+1]%N
+Prev = [mid+N-1]%N
 
 **Cases:**
 1. When the leftmost value is less than the rightmost value of a sorted array, the minimum element will be present at the leftmost index. In other words is not rotated at all and we return the leftmost value.
@@ -122,19 +129,45 @@ An index of a minimum element in the array defines the number of rotations in an
 Index is nothing but number of rotations.
 
 ```java
-private static int findNumRotation(int[] arr,int low,int high) {  
-  
-    if (low > high) return -1;  
-    int mid = (low + high) / 2;  
-    if (arr[low] < arr[high]) {  
-        return low;  
-    }  
-  
-    else if (arr[mid] > arr[high]) {  
-        return findNumRotation(arr, mid + 1, high);  
-    } else {  
-        return findNumRotation(arr, low, mid);  
-    }  
+static int findMinIndex(int[] arr, int start, int end){
+
+    int n = arr.length;
+    while (start <= end){
+        if(arr[start] <= arr[end]){
+            return start;
+        }
+        int mid = start + (end - start) / 2;
+        int next = (mid + 1) % n;
+        int prev = (mid + n -1) % n;
+        if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
+            return mid;
+        }else if(arr[start] <= arr[mid]){
+            start = mid + 1;
+        }else if(arr[mid] <= arr[end]){
+            end = mid - 1;
+        }
+    }
+    return -1;
+}
+
+static int findMinIndexRecursive(int[] arr, int start, int end){
+    if(arr[start] <= arr[end]){
+        return start;
+    }
+    int mid = start + (end - start) / 2;
+    int n = arr.length;
+    int next = (mid + 1) % n;
+    int prev = (mid + n - 1) % n;
+
+    if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
+        return mid;
+    }else if(arr[start] <= arr[mid]){
+        return findMinIndexRecursive(arr,mid+1,end);
+    }else if(arr[mid] <= arr[end]){
+        return findMinIndexRecursive(arr,start,mid - 1);
+    }else{
+        return -1;
+    }
 }
 ```
 
