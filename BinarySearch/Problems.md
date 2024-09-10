@@ -224,6 +224,13 @@ private static int findEltInNearlySortedArray(int arr[], int start, int end, int
 ```
 
 ## Find floor of an element in a sorted array
+Given a sorted array and a value x, the floor of x is the largest element in array smaller than or equal to x. Write efficient functions to find floor of x.
+
+Example:
+
+Input : arr[] = {1, 2, 8, 10, 10, 12, 19}, x = 5
+Output : 2
+2 is the largest element in arr[] smaller than 5.
 
 ```java
 private static int floorOfElt(int arr[],int start,int end, int num,int res){  
