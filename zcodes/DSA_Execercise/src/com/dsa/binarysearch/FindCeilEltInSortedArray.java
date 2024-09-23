@@ -13,18 +13,18 @@ public class FindCeilEltInSortedArray {
 
     public static void main(String[] args) {
         int[] arr = {6,7,8,10};
-        int floor = findElt(arr,0,arr.length-1,-1,5);
-        System.out.println(floor);
+        int ceil = findElt(arr,0,arr.length-1,-1,5);
+        System.out.println(ceil);
     }
-    static int findElt(int[] arr, int start,int end, int floor, int key){
-        if(start > end) return floor;
+    static int findElt(int[] arr, int start,int end, int ceil, int key){
+        if(start > end) return ceil;
         int mid = start + (end - start)/2;
         if(arr[mid] < key){
 
-            return findElt(arr,mid+1,end,floor,key);
+            return findElt(arr,mid+1,end,ceil,key);
         }else{
-            floor=arr[mid];
-            return findElt(arr,start,mid-1,floor,key);
+            ceil=arr[mid];
+            return findElt(arr,start,mid-1,ceil,key);
         }
     }
 }
