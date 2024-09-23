@@ -109,36 +109,71 @@ else
 
 `Output:` 4
 
-## Find minimum element in a sorted array / Find number of rotation in sorted array
+## Find minimum element in a sorted and rotated array / Find number of rotation in sorted array
 
 ### Thought process:
 An index of a minimum element in the array defines the number of rotations in an array.
+If min is in not at end or start, then min number will be always less than both elements of right and left. 
+3,4,5,1,2 - Here 1 is min element as it is smaller than left and right element.
+One side of the mid element would be sorted and another side would be unsorted. It is fact that min element would be always
+in the unsorted part.
+To prevent the outofbound exception while calculating next and last, we need to take modulus.
+Next = [mid+1]%N
+Prev = [mid+N-1]%N
 
 **Cases:**
 1. When the leftmost value is less than the rightmost value of a sorted array, the minimum element will be present at the leftmost index. In other words is not rotated at all and we return the leftmost value.
 2. When the value at the mid index is greater than the rightmost value, the minimum element would be  present on the right half.
 3. When the value at mid index is lesser than the rightmost value, the minimum element would be present on the left half.
 
+Index is nothing but number of rotations.
+
 ```java
-private static int findNumRotation(int[] arr,int low,int high) {  
-  
-    if (low > high) return -1;  
-    int mid = (low + high) / 2;  
-    if (arr[low] < arr[high]) {  
-        return low;  
-    }  
-  
-    else if (arr[mid] > arr[high]) {  
-        return findNumRotation(arr, mid + 1, high);  
-    } else {  
-        return findNumRotation(arr, low, mid);  
-    }  
+static int findMinIndex(int[] arr, int start, int end){
+
+    int n = arr.length;
+    while (start <= end){
+        if(arr[start] <= arr[end]){
+            return start;
+        }
+        int mid = start + (end - start) / 2;
+        int next = (mid + 1) % n;
+        int prev = (mid + n -1) % n;
+        if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
+            return mid;
+        }else if(arr[start] <= arr[mid]){
+            start = mid + 1;
+        }else if(arr[mid] <= arr[end]){
+            end = mid - 1;
+        }
+    }
+    return -1;
+}
+
+static int findMinIndexRecursive(int[] arr, int start, int end){
+    if(arr[start] <= arr[end]){
+        return start;
+    }
+    int mid = start + (end - start) / 2;
+    int n = arr.length;
+    int next = (mid + 1) % n;
+    int prev = (mid + n - 1) % n;
+
+    if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
+        return mid;
+    }else if(arr[start] <= arr[mid]){
+        return findMinIndexRecursive(arr,mid+1,end);
+    }else if(arr[mid] <= arr[end]){
+        return findMinIndexRecursive(arr,start,mid - 1);
+    }else{
+        return -1;
+    }
 }
 ```
 
-`Input:` 1,2,3,4,5,6,7,8,9,10 `Output:` 0 (index of the minimum element) - CASE 1
-`Input:` 6,7,8,9,10,1,2,3,4,5 `Output:` 0 (index of the minimum element) - CASE 2
-`Input:` 9,10,1,2,3,4,5,6,7,8 `Output:` 2 (index of the minimum element) - CASE 3
+`Input:` 1,2,3,4,5,6,7,8,9,10 `Output:` 0 (index of the minimum element) - CASE 1  
+`Input:` 6,7,8,9,10,1,2,3,4,5 `Output:` 0 (index of the minimum element) - CASE 2  
+`Input:` 9,10,1,2,3,4,5,6,7,8 `Output:` 2 (index of the minimum element) - CASE 3  
 
 ## Find an element in a rotated sorted array
 Use the previous method to find out the index of the min element in the rotated sorted array.
@@ -189,6 +224,13 @@ private static int findEltInNearlySortedArray(int arr[], int start, int end, int
 ```
 
 ## Find floor of an element in a sorted array
+Given a sorted array and a value x, the floor of x is the largest element in array smaller than or equal to x. Write efficient functions to find floor of x.
+
+Example:
+
+Input : arr[] = {1, 2, 8, 10, 10, 12, 19}, x = 5
+Output : 2
+2 is the largest element in arr[] smaller than 5.
 
 ```java
 private static int floorOfElt(int arr[],int start,int end, int num,int res){  
