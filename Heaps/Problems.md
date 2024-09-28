@@ -1,4 +1,12 @@
 #Heaps 
+
+### Identification of Heap problems
+Question must have given k(th largest or smallest) and ask for smallest/largest.
+
+K + smallest -> Max Heap
+K + largest ->  Min Heap
+nlogn -> n log k
+
 ## Sort a K Sorted Array | Sort a nearly sorted array
 
 Given an array of **N** elements, where each element is at most K away from its target position, devise an algorithm that sorts in O(N log K) time
