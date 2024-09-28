@@ -7,6 +7,15 @@ K + smallest -> Max Heap
 K + largest ->  Min Heap
 nlogn -> n log k
 
+### How to write/use heap in Java?
+Priority queue is the implementation of Heap data structure. This is not thread safe implementation of Heap. We can use PriorityBlockingQueue in multi threaded environment.
+
+#### Time complexity
+log(n) - add, offer, poll, remove
+O(n) - cotains, remove
+O(1) - peek, element, size
+
+
 ## Sort a K Sorted Array | Sort a nearly sorted array
 
 Given an array of **N** elements, where each element is at most K away from its target position, devise an algorithm that sorts in O(N log K) time
