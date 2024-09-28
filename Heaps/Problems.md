@@ -3,17 +3,17 @@
 ### Identification of Heap problems
 Question must have given k(th largest or smallest) and ask for smallest/largest.
 
-K + smallest -> Max Heap
-K + largest ->  Min Heap
-nlogn -> n log k
+K + smallest -> Max Heap  
+K + largest ->  Min Heap  
+nlogn -> n log k  
 
 ### How to write/use heap in Java?
 Priority queue is the implementation of Heap data structure. This is not thread safe implementation of Heap. We can use PriorityBlockingQueue in multi threaded environment.
 
 #### Time complexity
-log(n) - add, offer, poll, remove
-O(n) - cotains, remove
-O(1) - peek, element, size
+log(n) - add, offer, poll, remove  
+O(n) - cotains, remove  
+O(1) - peek, element, size  
 
 
 ## Sort a K Sorted Array | Sort a nearly sorted array
