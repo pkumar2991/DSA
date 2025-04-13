@@ -20,12 +20,12 @@ public class FindClosestNumbers {
         int x = 5;
         int k = 3;
         List<Pair> list = findElts(arr,k,x);
-        String collect = list.stream().map(Pair::getNum).map(String::valueOf).collect(Collectors.joining(","));
+        String collect = list.stream().map(Pair::num).map(String::valueOf).collect(Collectors.joining(","));
         System.out.println(collect);
     }
 
     static List<Pair> findElts(int[] arr, int k, int x){
-        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(Pair::getDiff).reversed());
+        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(Pair::diff).reversed());
         List<Pair> pairs = new ArrayList<>();
         for(int num : arr){
             pq.offer(new Pair(num,Math.abs(x-num)));
@@ -33,35 +33,20 @@ public class FindClosestNumbers {
                 pq.poll();
             }
         }
-        while (pq.size() > 0){
+        while (!pq.isEmpty()){
             pairs.add(pq.poll());
         }
         return pairs;
     }
 
-    private static class Pair{
-        private final int num;
-        private final int diff;
-
-        public Pair(int num, int diff) {
-            this.num = num;
-            this.diff = diff;
-        }
-
-        public int getNum() {
-            return num;
-        }
-
-        public int getDiff() {
-            return diff;
-        }
+    private record Pair(int num, int diff) {
 
         @Override
-        public String toString() {
-            return "Pair{" +
-                    "num=" + num +
-                    ", diff=" + diff +
-                    '}';
+            public String toString() {
+                return "Pair{" +
+                        "num=" + num +
+                        ", diff=" + diff +
+                        '}';
+            }
         }
-    }
 }

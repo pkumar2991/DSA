@@ -7,7 +7,7 @@ public class MaxofAllSubArray {
 
 	// Find largest number from each sub-array.
 	public static void main(String[] args) {
-		int[] arr = {1,3,-2,5,9,4};
+		int[] arr = {1,3,-1,-3,-5,3,6,7};
 		int k = 3;
 		int size = arr.length;
 		int i = 0;
@@ -25,7 +25,7 @@ public class MaxofAllSubArray {
 				queue.offer(arr[j]);
 			}
 			if(j-i+1 == k){
-				System.out.println( queue.peek());
+				System.out.print( queue.peek());
 				if(queue.peek() == arr[i]){
 					queue.poll();
 				}

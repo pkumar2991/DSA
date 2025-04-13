@@ -4,28 +4,31 @@ public class FindAnEltInRotatedArray {
 
     public static void main(String[] args) {
         int[] arr = {15,23,32,12,14};
-        int minEltIndex = FindNoOfRotationOfSortedArray.findMinIndex(arr,0,arr.length-1);
-        int key = 32;
-        int res = findElt(arr,0,minEltIndex - 1,key);
-        int res1 = findElt(arr,minEltIndex + 1, arr.length-1, key);
-        if(res >= 0)
-            System.out.println(res);
-        else if(res1 >=0)
-            System.out.println(res1);
-        else {
-            System.out.println("Number not found.");
-        }
+        int k = 23;
+        int index = findElt(arr,0,arr.length-1,k);
+        System.out.println("K found at: "+index);
     }
 
-    public static int findElt(int[] arr, int start, int end,int key){
+    private static int findElt(int[] arr, int start, int end, int k) {
+        int minIndex = FindNoOfRotationOfSortedArray.findMinIndex(arr,start,end);
+        if(minIndex >= 0 && arr[minIndex] == k){
+            return minIndex;
+        }
+        int res = findIn(arr,start,minIndex-1,k);
+        if(res == -1){
+            return findIn(arr,minIndex+1,end,k);
+        }
+        return res;
+    }
+
+    private static int findIn(int[] arr, int start, int end,int k) {
         if(start > end) return -1;
         int mid = start + (end - start) / 2;
-        if(arr[mid] == key)
-            return mid;
-        if(key < arr[mid]){
-            return findElt(arr,start,mid-1,key);
-        }else {
-            return findElt(arr,mid+1,end,key);
+        if(arr[mid] == k) return mid;
+        if(arr[mid] < k){
+            return findElt(arr,mid+1,end,k);
+        }else{
+            return findElt(arr,start,mid-1,k);
         }
     }
 }

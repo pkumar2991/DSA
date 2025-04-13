@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class FrequencySort {
     /**
-     * Sort the given frequencies in ascending order.
+     * Sort the given frequencies in descending order.
      * 1,1,1,3,2,2,2,2,4
      * Output: 2,2,2,2,1,1,1,1,3,4
      */
@@ -33,15 +33,15 @@ public class FrequencySort {
     List<Frequency> findElts(int[] arr) {
         List<Frequency> heapFrequencies = new ArrayList<>();
         List<Frequency> frequencies = getFrequency(arr).entrySet()
-                .stream().map(entry -> new Frequency(entry.getKey(), entry.getValue())).collect(Collectors.toList());
-        if (frequencies.size() == 0) {
+                .stream().map(entry -> new Frequency(entry.getKey(), entry.getValue())).toList();
+        if (frequencies.isEmpty()) {
             throw new RuntimeException("Data stream is empty.");
         }
         PriorityQueue<Frequency> pq = new PriorityQueue<>(Comparator.comparingLong(Frequency::getCount).reversed());
         for (Frequency f : frequencies) {
             pq.offer(f);
         }
-        while (pq.size() > 0) {
+        while (!pq.isEmpty()) {
             heapFrequencies.add(pq.poll());
         }
         return heapFrequencies;

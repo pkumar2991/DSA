@@ -13,6 +13,8 @@ public class SortKSortedArray {
      *
      * At a time we need to sort only k elements and in which we need to find the min value. This question gets
      * converted into heap question.
+     *
+     * Time complexity = n log(k)
      */
 
     public static void main(String[] args) {

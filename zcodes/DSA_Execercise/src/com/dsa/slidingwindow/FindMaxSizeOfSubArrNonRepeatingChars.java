@@ -6,7 +6,7 @@ import java.util.Map;
 public class FindMaxSizeOfSubArrNonRepeatingChars {
 
     public static void main(String[] args) {
-        String input = "acqdqbce";
+        String input = "geeksforgeeks";
         int i = 0;
         int j = 0;
         int max = 0;

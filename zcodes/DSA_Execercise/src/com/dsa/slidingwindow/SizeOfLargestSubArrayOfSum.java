@@ -2,8 +2,9 @@ package com.dsa.slidingwindow;
 
 public class SizeOfLargestSubArrayOfSum {
 	
-	// Find the sub-array size having sum k
+	// Find the largest sub-array size having sum k
 	// Solution is valid for positive numbers only
+	// Time complexity = O(N)
 
 	public static void main(String[] args) {
 		int[] arr = {4,1,1,1,1,3,5};

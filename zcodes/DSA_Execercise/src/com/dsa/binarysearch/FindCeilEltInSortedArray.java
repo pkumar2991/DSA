@@ -2,7 +2,9 @@ package com.dsa.binarysearch;
 
 public class FindCeilEltInSortedArray {
     /**
-     * Given a sorted array and a value x, the floor of x is the largest element in array smaller than or equal to x. Write efficient functions to find floor of x.
+     * Given a sorted array and a value x, the floor of x is the largest element in array smaller than or
+     * equal to x.
+     * Write efficient functions to find floor of x.
      *
      * Example:
      *

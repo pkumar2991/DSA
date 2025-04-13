@@ -12,7 +12,7 @@ public class PermutationWithCaseChange {
      */
 
     public static void main(String[] args) {
-        String str = "ab";
+        String str = "abc";
         printPermutation(str,"");
     }
 

@@ -5,7 +5,8 @@ import java.util.Deque;
 
 public class ReverseStack {
     /**
-     * Reverse a stack - 10,2,8,9,5
+     * Reverse a stack - 10,2,8,9,5 with O(1) space complexity.
+     * Time complexity - O(n^2)
      */
 
     public static void main(String[] args) {
